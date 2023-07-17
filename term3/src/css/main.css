@@ -1,0 +1,46 @@
+/* Universal Styling */
+/* --Fonts */
+/* ----Primary */
+.Abel {
+    font-family: 'Abel';
+    src: url('../Assets/Fonts/Abel/Abel-Regular.ttf');
+}
+
+/* ----Secondary & Tertiary */
+.Rye {
+    font-family: 'Rye';
+    src: url('../Assets/Fonts/Rye/Rye-Regular.ttf');
+}
+
+.Lobster {
+    font-family: 'Lobster';
+    src: url('../Assets/Fonts/Lobster/Lobster-Regular.ttf');
+}
+
+/* --Colours */
+.beige {
+    color: #f8f7f2;
+}
+
+.brown {
+    color: #3d1617;
+}
+
+/* Navbar */
+.nav_bg {
+    height: 300px;
+    width: 100%;
+
+    padding-top: 15px;
+
+    background-color: #f8f7f2;;
+}
+
+.nav-link {
+    color: #3d1617 !important;
+}
+
+.nav-link:hover {
+    background-color: #3d1617;
+    color: #f8f7f2 !important;
+}
