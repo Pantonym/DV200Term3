@@ -2,18 +2,18 @@
 /* --Fonts */
 /* ----Primary */
 .Abel {
-    font-family: 'Abel';
+    font-family: 'Abel', serif;
     src: url('../Assets/Fonts/Abel/Abel-Regular.ttf');
 }
 
 /* ----Secondary & Tertiary */
 .Rye {
-    font-family: 'Rye';
+    font-family: 'Rye', serif;
     src: url('../Assets/Fonts/Rye/Rye-Regular.ttf');
 }
 
 .Lobster {
-    font-family: 'Lobster';
+    font-family: 'Lobster', sans-serif;
     src: url('../Assets/Fonts/Lobster/Lobster-Regular.ttf');
 }
 
@@ -26,21 +26,72 @@
     color: #3d1617;
 }
 
+.beige_bg {
+    background-color: #f8f7f2;
+}
+
+.brown_bg {
+    background-color: #3d1617;
+}
+
 /* Navbar */
 .nav_bg {
-    height: 300px;
+    height: 180px;
     width: 100%;
 
     padding-top: 15px;
 
-    background-color: #f8f7f2;;
+    background-color: #f8f7f2;
 }
 
-.nav-link {
+.nav_link {
     color: #3d1617 !important;
+
+    margin-right: 30px;
+    width: 100px;
 }
 
-.nav-link:hover {
-    background-color: #3d1617;
-    color: #f8f7f2 !important;
+.nav_link:hover {
+    color: #2d397e !important;
+}
+
+/* Footer */
+
+.footer_bg {
+    height: 150px;
+    width: 100%;
+
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 65px;
+
+    background-color: #f8f7f2;
+}
+
+/* Pages */
+/* --Landing Page */
+.CarouselImg {
+    height: 350px;
+}
+
+.CarouselHeading {
+    font-size: xx-large;
+}
+
+.CarouselText {
+    font-size: large;
+}
+
+.IceCreamImg {
+    width: 65%;
+    height: auto;
+}
+
+.IceCreamImg:hover {
+    border: 5px solid #3d1617;
+}
+
+.SelectedImg {
+    width: 50%;
+    height: auto;
 }

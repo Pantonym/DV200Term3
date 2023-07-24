@@ -10,12 +10,12 @@ import { useState, useEffect } from "react";
 // Pages
 import Landing from './pages/landing.js';
 import Products from './pages/products.js';
-import Landing from './pages/checkout.js';
-import Products from './pages/administrator.js';
+import Checkout from './pages/checkout.js';
+import Administrator from './pages/administrator.js';
 
 // Import Page Elements
-import Navbar from './components/navbar';
-import Footer from './components/footer';
+import Navbar from './components/navbar.js';
+import Footer from './components/footer.js';
 
 function App() {
 
