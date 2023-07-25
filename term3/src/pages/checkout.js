@@ -8,9 +8,11 @@ import { useState, useEffect } from "react";
 import { Card, Container, Row, Col } from "react-bootstrap";
 
 function Checkout() {
-    
+
     return (
-        <div></div>
+        <div className="beige_bg" style={{ height: 'auto' }}>
+
+        </div>
     )
 }
 

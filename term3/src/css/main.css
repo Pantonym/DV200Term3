@@ -34,6 +34,10 @@
     background-color: #3d1617;
 }
 
+.inline {
+    display: inline;
+}
+
 /* Navbar */
 .nav_bg {
     height: 180px;
@@ -94,4 +98,33 @@
 .SelectedImg {
     width: 50%;
     height: auto;
+}
+
+/* Single Item Page */
+.SingleImg {
+    height: 600px;
+    border: 10px solid #3d1617;
+    border-radius: 5%;
+}
+
+#SelectFlavours {
+    padding: 5px;
+}
+
+#SelectSize {
+    padding: 5px;
+}
+
+.CheckLabel {
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+/* Admin page */
+.OrderItem {
+    height: 250px;
+}
+
+.InvItem {
+    height: 200px;
 }

@@ -12,6 +12,7 @@ import Landing from './pages/landing.js';
 import Products from './pages/products.js';
 import Checkout from './pages/checkout.js';
 import Administrator from './pages/administrator.js';
+import SingleItem from './pages/singleitem';
 
 // Import Page Elements
 import Navbar from './components/navbar.js';
@@ -29,6 +30,7 @@ function App() {
         <Route path='/products' element={<Products />} />
         <Route path='/checkout' element={<Checkout />} />
         <Route path='/administrator' element={<Administrator />} />
+        <Route path='/singleitem' element={<SingleItem />} />
       </Routes>
 
       <Footer />
