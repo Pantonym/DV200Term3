@@ -18,35 +18,41 @@ function Checkout() {
                 <h2 className="Lobster">Checkout</h2>
             </Row>
 
-            <div id="ConfirmOrder" style={{ display: 'none', position: 'absolute', marginLeft: '45%', zIndex: '1' }}>
+            <div id="ConfirmOrder" style={{ display: 'none', position: 'absolute', marginLeft: '36%', zIndex: '1' }}>
                 <div><h2>Billing Information</h2></div>
 
-                <div>
+                <br></br>
+
+                <div className="ConfirmDiv">
                     <label className="inline">Card Number</label>
-                    <input type="input"></input>
+                    <br></br>
+                    <input type="input" className="BillingInput"></input>
                 </div>
 
-                <div>
+                <div className="ConfirmDiv">
                     <label className="inline">CVV Number</label>
-                    <input type="input"></input>
+                    <br></br>
+                    <input type="input" className="BillingInput"></input>
                 </div>
 
-                <div>
+                <div className="ConfirmDiv">
                     <label className="inline">Recipient Name</label>
-                    <input type="input"></input>
+                    <br></br>
+                    <input type="input" className="BillingInput"></input>
                 </div>
 
-                <div>
+                <div className="ConfirmDiv">
                     <label className="inline">Recipient Address</label>
-                    <input type="input"></input>
+                    <br></br>
+                    <input type="input" className="BillingInput"></input>
                 </div>
 
                 <br></br>
 
                 <div>
-                    <button type="submit">Place Order</button>
+                    <button type="submit" id="btnConfirm" className="ConfirmDiv ">Place Order</button>
                     <br></br>
-                    <button type="submit" onClick={() => { document.getElementById("ConfirmOrder").style.display = 'none' }}>Cancel</button>
+                    <button type="submit" id="btnCancel" onClick={() => { document.getElementById("ConfirmOrder").style.display = 'none' }}>Cancel</button>
                 </div>
             </div>
 

@@ -38,6 +38,14 @@
     display: inline;
 }
 
+.Right {
+    float: right;
+}
+
+.Left {
+    float: left;
+}
+
 /* Navbar */
 .nav_bg {
     height: 180px;
@@ -127,4 +135,43 @@
 
 .InvItem {
     height: 200px;
+}
+
+/* Checkout */
+.ConfirmDiv {
+    margin-bottom: 15px;
+}
+
+#ConfirmOrder {
+    background-color: #f8f7f2;
+    border: 5px solid #3d1617;
+
+    width: 475px;
+
+    padding: 25px;
+
+    border-radius: 15%;
+}
+
+.BillingInput {
+    border: 2px solid #3d1617;
+    border-radius: 15px;
+
+    padding: 10px;
+
+    width: 300px;
+}
+
+#btnConfirm {
+    font-size: large;
+    width: 150px;
+
+    border-radius: 15px;
+}
+
+#btnCancel {
+    font-size: large;
+    width: 100px;
+
+    border-radius: 15px;
 }

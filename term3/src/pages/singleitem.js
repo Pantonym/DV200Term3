@@ -30,7 +30,7 @@ function SingleItem() {
                     <img src={IceCream1} className="SingleImg"></img>
                 </Col>
 
-                <Col className="col-5 Abel" style={{ fontSize: "Largest" }}>
+                <Col className="col-5 Abel text-start" style={{ fontSize: "Largest" }}>
                     <div><p id="SinglePrice">R80</p></div>
 
                     <div><p id="SingleDesc">1 Unit of this item, Call to action Lorem Ipsum Solor Dolor Sit Amet</p></div>
