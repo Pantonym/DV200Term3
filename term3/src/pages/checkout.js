@@ -1,14 +1,11 @@
 // Import React functionality
 import React from "react";
 
-// Import functionality for loading text
-import { useState, useEffect } from "react";
-
 // Import Images
 import IceCream1 from '../Assets/images/items/IceCream1.png';
 
 // Import Bootstrap functionality
-import { Card, Container, Row, Col } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 
 function Checkout() {
 
@@ -18,7 +15,7 @@ function Checkout() {
                 <h2 className="Lobster">Checkout</h2>
             </Row>
 
-            <div id="ConfirmOrder" style={{ display: 'none', position: 'absolute', marginLeft: '36%', zIndex: '1' }}>
+            <div className="Abel" id="ConfirmOrder" style={{ display: 'none', position: 'absolute', marginLeft: '36%', zIndex: '1' }}>
                 <div><h2>Billing Information</h2></div>
 
                 <br></br>
@@ -62,7 +59,7 @@ function Checkout() {
                     <img src={IceCream1} className="OrderItem"></img>
                 </Col>
 
-                <Col className="col-5 text-start">
+                <Col className="col-5 text-start Abel">
                     <div>
                         <p className="inline" id="OrderName">Ice Cream Bowl</p>
                     </div>
@@ -102,7 +99,7 @@ function Checkout() {
                     <img src={IceCream1} className="OrderItem"></img>
                 </Col>
 
-                <Col className="col-5 text-start">
+                <Col className="col-5 text-start Abel">
                     <div>
                         <p className="inline" id="OrderName">Ice Cream Bowl</p>
                     </div>

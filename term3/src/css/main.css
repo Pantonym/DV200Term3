@@ -95,8 +95,40 @@
 }
 
 .IceCreamImg {
-    width: 65%;
+    width: 80%;
     height: auto;
+}
+
+.ItemDescSmall {
+    height: auto;
+    width: 90%;
+}
+
+.btnItem {
+    height: auto;
+    width: auto;
+
+    padding: 5px 10px 5px 10px;
+
+    margin-left: 42%;
+    margin-top: 10px;
+
+    border: 3px solid #3d1617;
+    border-radius: 25px;
+
+    background-color: #f8f7f2;
+
+    font-size: large;
+}
+
+.btnItem:hover {
+    background-color: #3d1617;
+    color: #f8f7f2;
+}
+
+.aAddToCart {
+    text-decoration: none;
+    color: #3d1617;
 }
 
 .IceCreamImg:hover {
@@ -174,4 +206,18 @@
     width: 100px;
 
     border-radius: 15px;
+}
+
+#btnAdmin_left {
+    border: 3px solid #3d1617;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+
+    border-right: none;
+}
+
+#btnAdmin_right {
+    border: 3px solid #3d1617;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
 }

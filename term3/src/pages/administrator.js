@@ -1,14 +1,11 @@
 // Import React functionality
 import React from "react";
 
-// Import functionality for loading text
-import { useState, useEffect } from "react";
-
 // Import Images
 import IceCream1 from '../Assets/images/items/IceCream1.png';
 
 // Import Bootstrap functionality
-import { Card, Container, Row, Col } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 
 function Administrator() {
 
@@ -18,14 +15,37 @@ function Administrator() {
             <Row className="beige_bg">
                 <Col></Col>
                 <Col className="Lobster">
-                    <button onClick={() => {document.getElementById("OrderManagementDiv").style.display = 'block'; document.getElementById("InventoryManagementDiv").style.display = 'none';}} >Order <br></br> Processing</button>
-                    <button onClick={() => {document.getElementById("OrderManagementDiv").style.display = 'none'; document.getElementById("InventoryManagementDiv").style.display = 'block';}}>Inventory <br></br> Management</button>
+                    <button ID="btnAdmin_left" style={{backgroundColor: '#3d1617', color: '#f8f7f2'}} onClick={() => { 
+                        document.getElementById("OrderManagementDiv").style.display = 'block'; 
+                        document.getElementById("InventoryManagementDiv").style.display = 'none'; 
+                        // --Button style change
+                        document.getElementById("btnAdmin_left").style.backgroundColor = '#3d1617';
+                        document.getElementById("btnAdmin_left").style.color = '#f8f7f2';
+
+                        document.getElementById("btnAdmin_right").style.backgroundColor = '#f8f7f2';
+                        document.getElementById("btnAdmin_right").style.color = '#3d1617';
+                        }} >
+                        Order <br></br> Processing
+                    </button>
+
+                    <button ID="btnAdmin_right" style={{backgroundColor: '#f8f7f2', color: '#3d1617'}} onClick={() => { 
+                        document.getElementById("OrderManagementDiv").style.display = 'none'; 
+                        document.getElementById("InventoryManagementDiv").style.display = 'block'; 
+                        // --Button style change
+                        document.getElementById("btnAdmin_left").style.backgroundColor = '#f8f7f2';
+                        document.getElementById("btnAdmin_left").style.color = '#3d1617';
+
+                        document.getElementById("btnAdmin_right").style.backgroundColor = '#3d1617';
+                        document.getElementById("btnAdmin_right").style.color = '#f8f7f2';
+                        }}>
+                        Inventory <br></br> Management
+                    </button>
                 </Col>
                 <Col></Col>
             </Row>
 
             {/* Order Management */}
-            <div id="OrderManagementDiv" style={{ display: 'block' }}>
+            <div id="OrderManagementDiv" style={{ display: 'block' }} className="Abel">
                 <Row>
                     <Col className="col-1"></Col>
                     <Col className="col-3 text-end">
@@ -86,7 +106,7 @@ function Administrator() {
             </div>
 
             {/* Inventory Management */}
-            <div id="InventoryManagementDiv" style={{ display: 'none' }}>
+            <div id="InventoryManagementDiv" style={{ display: 'none' }} className="Abel">
                 <Row>
                     <Col className="col-1"></Col>
                     <Col className="col-3 text-end">
