@@ -1,22 +1,29 @@
+// Basic Uses
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
+const { log } = require('console');
 
+// Route Uses
 const carRoute = require('./routes/cars')
 const userRoute = require('./routes/users')
 
 require('dotenv/config');
 
-const app = express()
+const app = express();
 
-// used with react
+// Used with React
+// mitigates Cors issues that you _might_ get
 app.use(cors({
+    // where the communication comes from the client side
     origin: 'http://localhost:3000' //change if the port changes to 3001, etc
 }))
 
+// makes the json data work
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+// Must be below the express
 app.use(carRoute)
 app.use(userRoute)
 
@@ -24,20 +31,14 @@ app.use(userRoute)
 mongoose.connect(process.env.DB_CONNECTION, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    dbName: 'test', //Collection Name
-}).then(() => console.log("Connected to test DB"))
+    dbName: 'DV200T3', //--How the db will be named on mongo's side as well. NB MUST BE THE SAME.
+}).then(() => {
+    console.log("Connected to the DB")
+})
     .catch((err) => {
         console.log("No Connection. Reason: " + err);
     });
 
-const PORT = process.env.PORT || 5001;
+const PORT = process.env.PORT || 5000; // Can change if the port changes (to 5001, 5002, etc)
 // if the port doesn't work, delete all terminals on the lower right had side
-
-app.listen(PORT, () => { console.log(`server has started at port: ${PORT}`) });
-
-// just checked, nobody knows what Insomnia is, nor how to use it
-// i should have gone to a different college
-// it just makes you feel so dejected
-// cause its obvious he doesnt care AT ALL about teaching
-// if he did, he would ACTUALLY DO IT WITH US INSTEAD OF DOING IT SOLO
-// what's the use of complaining to student support if nothing ever changes
+app.listen(PORT, () => { console.log('server has started at port:', PORT) });
