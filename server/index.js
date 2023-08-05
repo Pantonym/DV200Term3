@@ -5,8 +5,9 @@ const mongoose = require('mongoose');
 const { log } = require('console');
 
 // Route Uses
-const carRoute = require('./routes/cars')
-const userRoute = require('./routes/users')
+const productRoute = require('./routes/products');
+const userRoute = require('./routes/users');
+const orderRoute = require('./routes/orders');
 
 require('dotenv/config');
 
@@ -24,8 +25,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 // Must be below the express
-app.use(carRoute)
-app.use(userRoute)
+app.use(productRoute);
+app.use(userRoute);
+app.use(orderRoute);
 
 //goes to env file and pulls correct details from it, and connects to the mongo instance
 mongoose.connect(process.env.DB_CONNECTION, {
