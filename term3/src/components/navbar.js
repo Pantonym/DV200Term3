@@ -34,7 +34,10 @@ function Navbar() {
                 <Col style={{fontSize: '22px'}}>
                     <a className="nav_link" href="/">Landing</a>
                     <a className="nav_link" href="/products">Products</a>
+                    {/* Checkout will be invisible for admins */}
                     <a className="nav_link" href="/checkout">Checkout</a>
+                    
+                    {/* Administrator will be hidden for users */}
                     <a className="nav_link" style={{marginRight: '0px'}} href="/administrator">Administrator</a>
                 </Col>
             </Row>
