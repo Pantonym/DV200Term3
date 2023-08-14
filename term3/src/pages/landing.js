@@ -91,7 +91,7 @@ function Landing() {
         <div style={{ height: 'auto' }}>
 
             {/* Image Slider */}
-            <Row className="beige_bg" style={{ paddingBottom: "25px" }}>
+            <Row className="beige_bg" style={{ paddingBottom: "25px", zIndex: '1' }}>
                 {/* --Makes space left of the slider */}
                 <Col className="col-2"></Col>
 

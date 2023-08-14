@@ -17,6 +17,8 @@ import SingleItem from './pages/singleitem';
 // Import Page Elements
 import Navbar from './components/navbar.js';
 import Footer from './components/footer.js';
+import LogIn from './components/login';
+import SignUp from './components/signup';
 
 function App() {
 
@@ -24,6 +26,8 @@ function App() {
 
     <div className="App">
       <Navbar />
+      <LogIn />
+      <SignUp />
 
       <Routes>
         <Route path='/' element={<Landing />} />

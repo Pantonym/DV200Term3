@@ -81,6 +81,28 @@
 }
 
 /* Pages */
+/* --All Pages */
+#btnLogin {
+    border: none;
+    background-color: #f8f7f2;
+
+    font-size: xx-large;
+}
+
+#btnSignUp {
+    border: none;
+    background-color: #f8f7f2;
+
+    font-size: xx-large;
+}
+
+.login_bg {
+    height: 50px;
+    width: 100%;
+
+    background-color: #f8f7f2;
+}
+
 /* --Landing Page */
 .CarouselImg {
     height: 350px;
