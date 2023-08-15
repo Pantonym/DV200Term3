@@ -13,12 +13,11 @@ import Products from './pages/products.js';
 import Checkout from './pages/checkout.js';
 import Administrator from './pages/administrator.js';
 import SingleItem from './pages/singleitem';
+import SignUp from './pages/signup';
 
 // Import Page Elements
 import Navbar from './components/navbar.js';
 import Footer from './components/footer.js';
-import LogIn from './components/login';
-import SignUp from './components/signup';
 
 function App() {
 
@@ -26,11 +25,10 @@ function App() {
 
     <div className="App">
       <Navbar />
-      <LogIn />
-      <SignUp />
 
       <Routes>
         <Route path='/' element={<Landing />} />
+        <Route path='/signup' element={<SignUp />} />
         <Route path='/products' element={<Products />} />
         <Route path='/checkout' element={<Checkout />} />
         <Route path='/administrator' element={<Administrator />} />
