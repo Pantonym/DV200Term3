@@ -4,9 +4,6 @@ import './css/main.css';
 // Import Routes
 import { Route, Routes } from 'react-router-dom';
 
-// Import functionality for loading text
-import { useState, useEffect } from "react";
-
 // Pages
 import Landing from './pages/landing.js';
 import Products from './pages/products.js';
@@ -29,6 +26,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Landing />} />
         <Route path='/signup' element={<SignUp />} />
+        
         <Route path='/products' element={<Products />} />
         <Route path='/checkout' element={<Checkout />} />
         <Route path='/administrator' element={<Administrator />} />

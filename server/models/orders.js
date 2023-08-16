@@ -10,10 +10,6 @@ const OrderSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    quantity: {
-        type: String,
-        required: true
-    },
     totalprice: {
         type: String,
         required: true
@@ -21,6 +17,11 @@ const OrderSchema = mongoose.Schema({
 
 });
 
-// Only one client ID will be added. Orders will be a collection of Product ID's separated by a comma and a space. Quantity will be the amount of each product also separated by a comma and a space.
+// Orders will be formatted as such:
+// 1. Only one client id will be added, as well as only one total price.
+// 2. The Order section will be formatted in EXACTLY this format:
+// 2.1) "name, price, sauce, cone, conesize, flavour, restrictions, quantity; name, price, sauce, cone, conesize, flavour, restrictions, quantity; etc."
+// 2.2) This is to make it easier to break into sections to calculate and display on other pages. A for loop will run through and collect each item using the commas as a landmark.
+// It will then test to see if the new first letter (as each item will be deleted from the test string) is a ';'. If it is, it will run through the loop again until no items remain.
 
 module.exports = mongoose.model("Order", OrderSchema);

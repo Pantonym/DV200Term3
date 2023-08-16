@@ -5,9 +5,9 @@ const mongoose = require('mongoose');
 const ProductSchema = mongoose.Schema({
     name: {
         type: String,
-        // A string will be used to show what the make is
+        // A string will be used to show what the name is
         required: true
-        // we ALWAYS want to know what make a car is
+        // we ALWAYS want to know what a product's name is
     },
     tagline: {
         type: String,
@@ -21,27 +21,62 @@ const ProductSchema = mongoose.Schema({
         type: Number,
         required: true
     },
-    sauce: {
-        type: String,
+    stock: {
+        type: Number,
         required: true
     },
-    cone: {
-        type: String,
-        required: true
-    },
-    conesize: {
-        type: String,
-        required: true
-    },
-    flavour: {
-        type: String,
-        required: true
-    },
-    restrictions: {
-        type: String,
-        required: true
+    variations: {
+        sauce: {
+            chocolate: {
+                type: Number
+            },
+            vanilla: {
+                type: Number
+            },
+            caramel: {
+                type: Number
+            }
+        },
+        cone: {
+            yoghurt: {
+                small: {
+                    type: Number
+                },
+                medium: {
+                    type: Number
+                },
+                large: {
+                    type: Number
+                }
+            },
+            waffle: {
+                small: {
+                    type: Number
+                },
+                medium: {
+                    type: Number
+                },
+                large: {
+                    type: Number
+                }
+            },
+            bucket: {
+                small: {
+                    type: Number
+                },
+                medium: {
+                    type: Number
+                },
+                large: {
+                    type: Number
+                }
+            }
+        }
     }
 
 });
+
+// Each item has a predestined flavour, which is designated by the name.
+// The only changeable flavour will be for the sauce.
 
 module.exports = mongoose.model("Product", ProductSchema);

@@ -191,6 +191,14 @@
     height: 200px;
 }
 
+.stockInput {
+    width: 75px;
+}
+
+ul, li {
+    display: inline-block;
+}
+
 /* Checkout */
 .ConfirmDiv {
     margin-bottom: 15px;

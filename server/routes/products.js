@@ -8,9 +8,10 @@ const ProductSchema = require('../models/products.js');
 const router = express();
 
 // Get all
+// --Updated
 router.get('/api/products_get_all/', async (req, res) => {
-    const findProduct = await ProductSchema.find();
-    res.json(findProduct);
+    const findAllProducts = await ProductSchema.find();
+    res.json(findAllProducts);
 });
 
 // Get Single. The ID is a Param, as anything after /: is a parameter. Req is short for request, not require.
@@ -28,11 +29,43 @@ router.put('/api/product_update/:id', async (req, res) => {
 });
 
 // Create
+// --Updated
 router.post('/api/product_add/', async (req, res) => {
-    const car = new ProductSchema({ ...req.body });
-    await car.save()
-        .then(response => res.json(response))
-        .catch(error => res.status(500).json(error)) // status 500 is an internal service error
+    const newProduct = new ProductSchema({
+        name: req.body.name,
+        tagline: req.body.tagline,
+        description: req.body.desc,
+        price: req.body.price,
+        stock: req.body.stock,
+        variations: {
+            sauce: {
+                chocolate: req.body.variations.sauce.chocolate,
+                vanilla: req.body.variations.sauce.vanilla,
+                caramel: req.body.variations.sauce.caramel
+            },
+            cone: {
+                yoghurt: {
+                    small: req.body.variations.cone.yoghurt.small,
+                    medium: req.body.variations.cone.yoghurt.medium,
+                    large: req.body.variations.cone.yoghurt.large
+                },
+                waffle: {
+                    small: req.body.variations.cone.waffle.small,
+                    medium: req.body.variations.cone.waffle.medium,
+                    large: req.body.variations.cone.waffle.large
+                },
+                bucket: {
+                    small: req.body.variations.cone.bucket.small,
+                    medium: req.body.variations.cone.bucket.medium,
+                    large: req.body.variations.cone.bucket.large
+                }
+            }
+        }
+    });
+
+    await newProduct.save()
+        .then(item => res.json(item))
+        .catch(error => res.status(400).json(error)) // status 500 is an internal service error
 });
 
 //Delete

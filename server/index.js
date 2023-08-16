@@ -14,11 +14,11 @@ require('dotenv/config');
 const app = express();
 
 // Used with React
-// mitigates Cors issues that you _might_ get
+// mitigates Cors issues that you _might_ get. Must be placed above express.json and routes, otherwise it will not work
 app.use(cors({
     // where the communication comes from the client side
-    origin: 'http://localhost:3000' //change if the port changes to 3001, etc
-}))
+    origin: 'http://localhost:3000' //change if the port changes to 3001, etc. Delete all terminals and restart servers to reset back to port 3000.
+}));
 
 // makes the json data work
 app.use(express.json());
