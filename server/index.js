@@ -9,6 +9,7 @@ const productRoute = require('./routes/products');
 const userRoute = require('./routes/users');
 const orderRoute = require('./routes/orders');
 
+// Same as require("dotenv").config();
 require('dotenv/config');
 
 const app = express();
