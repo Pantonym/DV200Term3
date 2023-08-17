@@ -13,8 +13,10 @@ function Checkout() {
         <div className="beige_bg" style={{ height: 'auto' }}>
             <Row>
                 <h2 className="Lobster">Checkout</h2>
+                <br></br>
             </Row>
 
+            {/* Hidden confirmation form */}
             <div className="Abel" id="ConfirmOrder" style={{ display: 'none', position: 'absolute', marginLeft: '36%', zIndex: '1' }}>
                 <div><h2>Billing Information</h2></div>
 
@@ -53,13 +55,14 @@ function Checkout() {
                 </div>
             </div>
 
+            {/* Items */}
             <Row>
                 <Col className="col-1"></Col>
                 <Col className="col-3 text-end">
                     <img src={IceCream1} className="OrderItem"></img>
                 </Col>
 
-                <Col className="col-5 text-start Abel">
+                <Col className="col-5 text-start Abel ItemFont">
                     <div>
                         <p className="inline" id="OrderName">Ice Cream Bowl</p>
                     </div>
@@ -99,7 +102,7 @@ function Checkout() {
                     <img src={IceCream1} className="OrderItem"></img>
                 </Col>
 
-                <Col className="col-5 text-start Abel">
+                <Col className="col-5 text-start Abel ItemFont">
                     <div>
                         <p className="inline" id="OrderName">Ice Cream Bowl</p>
                     </div>
@@ -131,20 +134,24 @@ function Checkout() {
                 <Col className="col-3"></Col>
             </Row>
 
+            <br></br>
+
             {/* Total and button */}
             <Row className="beige_bg">
                 <Col></Col>
                 <Col>
-                    <label className="inline">Total: </label>
-                    <p className="inline" id="OrderPrice">R240</p>
+                    <label className="inline CheckoutTotal">Total: </label>
+                    <p className="inline CheckoutTotal" id="OrderPrice">R240</p>
                 </Col>
                 <Col></Col>
             </Row>
 
+            <br></br>
+
             <Row className="beige_bg">
                 <Col></Col>
                 <Col>
-                    <button type="submit" onClick={() => { document.getElementById("ConfirmOrder").style.display = 'block' }}>Confirm Order</button>
+                    <button type="submit" id="CheckoutConfirm" onClick={() => { document.getElementById("ConfirmOrder").style.display = 'block' }}>Confirm Order</button>
                 </Col>
                 <Col></Col>
             </Row>

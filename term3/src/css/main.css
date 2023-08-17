@@ -195,8 +195,76 @@
     width: 75px;
 }
 
-ul, li {
+ul,
+li {
     display: inline-block;
+}
+
+#btnAddItem {
+    padding: 10px 30px 10px 30px;
+
+    border-radius: 15px;
+
+    background-color: #f8f7f2;
+    border: 3px solid #3d1617;
+
+    font-size: large;
+}
+
+.AdminForm {
+    font-size: large;
+}
+
+.AdminInput {
+    border: 2px solid #3d1617;
+    border-radius: 25px;
+
+    padding-left: 10px;
+    padding-right: 10px;
+
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.StockLeft {
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+
+    padding-left: 10px;
+
+    border: 2px solid #3d1617;
+
+    border-right: 0px;
+}
+
+.StockMid {
+    padding-left: 10px;
+
+    border: 2px solid #3d1617;
+}
+
+.StockRight {
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+
+    padding-left: 10px;
+
+    border: 2px solid #3d1617;
+
+    border-left: 0px;
+}
+
+.btnConfirmCancel {
+    padding: 5px 20px 5px 20px;
+
+    border-radius: 15px;
+
+    background-color: #f8f7f2;
+    border: 3px solid #3d1617;
+
+    font-size: large;
+
+    margin-top: 10px;
 }
 
 /* Checkout */
@@ -250,4 +318,27 @@ ul, li {
     border: 3px solid #3d1617;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
+}
+
+.ItemFont {
+    font-size: large;
+}
+
+.CheckoutTotal {
+    font-size: large;
+}
+
+#CheckoutConfirm {
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    padding-left: 30px;
+    padding-right: 30px;
+
+    border-radius: 25px;
+    border: 3px solid #3d1617;
+
+    background-color: #f8f7f2;
+
+    font-size: large;
 }

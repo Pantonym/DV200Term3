@@ -254,7 +254,7 @@ function Administrator() {
 
             {/* Order Management */}
             <div id="OrderManagementDiv" style={{ display: 'block' }} className="Abel">
-                <Row>
+                <Row style={{ fontSize: "Large" }}>
                     <Col className="col-1"></Col>
                     <Col className="col-3 text-end">
                         <br></br>
@@ -286,7 +286,7 @@ function Administrator() {
 
                 <br></br>
 
-                <Row>
+                <Row style={{ fontSize: "Large" }}>
                     <Col className="col-1"></Col>
                     <Col className="col-3 text-end">
                         <img src={IceCream1} className="OrderItem"></img>
@@ -318,7 +318,7 @@ function Administrator() {
 
             {/* Inventory Management */}
             <div id="InventoryManagementDiv" style={{ display: 'none' }} className="Abel">
-                <Row>
+                <Row style={{ fontSize: "Large" }}>
                     <Col className="col-1"></Col>
                     <Col className="col-3 text-end">
                         <br></br>
@@ -354,7 +354,7 @@ function Administrator() {
 
                 <br></br>
 
-                <Row>
+                <Row style={{ fontSize: "Large" }}>
                     <Col className="col-1"></Col>
                     <Col className="col-3 text-end">
                         <img src={IceCream1} className="InvItem"></img>
@@ -387,8 +387,8 @@ function Administrator() {
                 </Row>
 
                 <br></br>
-                <br></br>
 
+                {/* New item button */}
                 <Row>
                     <Col align="center">
                         <button style={{ display: 'block' }} type="button" id="btnAddItem" onClick={() => {
@@ -402,20 +402,20 @@ function Administrator() {
 
                 <Row>
                     <Col>
-                        <div style={{ display: 'none' }} id="AddItemForm">
+                        <div style={{ display: 'none' }} id="AddItemForm" className="AdminForm">
                             {/* Base Item */}
                             <h3>Add Product</h3>
                             <label htmlFor="fName">Name:</label> <br></br>
-                            <input type="text" id="fName" name="fName" onChange={getName} placeholder="Enter the product's name"></input> <br></br>
+                            <input type="text" id="fName" name="fName" onChange={getName} placeholder="Enter the product's name" className="AdminInput"></input> <br></br>
 
                             <label htmlFor="fTagline">Tagline:</label> <br></br>
-                            <input type="text" id="fTagline" name="fTagline" onChange={getTagLine} placeholder="Enter the product's tagline"></input> <br></br>
+                            <input type="text" id="fTagline" name="fTagline" onChange={getTagLine} placeholder="Enter the product's tagline" className="AdminInput"></input> <br></br>
 
                             <label htmlFor="fDesc">Description:</label> <br></br>
-                            <input type="text" id="fDesc" name="fDesc" onChange={getDesc} placeholder="Enter the product's description"></input> <br></br>
+                            <input type="text" id="fDesc" name="fDesc" onChange={getDesc} placeholder="Enter the product's description" className="AdminInput"></input> <br></br>
 
                             <label htmlFor="fPrice">Price:</label> <br></br>
-                            <input type="number" id="fPrice" name="fPrice" onChange={getPrice} placeholder="0" min={0}></input> <br></br>
+                            <input type="number" id="fPrice" name="fPrice" onChange={getPrice} placeholder="0" min={0} className="AdminInput"></input> <br></br>
 
                             <br></br>
                             {/* Variations */}
@@ -425,75 +425,75 @@ function Administrator() {
                             <ul>
                                 <li>
                                     <label htmlFor="fSauceChoco">Chocolate</label> <br></br>
-                                    <input type="number" id="fSauceChoco" name="fSauceChoco" onChange={getSauceChoco} className="stockInput" placeholder="0" min={0}></input> <br></br>
+                                    <input type="number" id="fSauceChoco" name="fSauceChoco" onChange={getSauceChoco} className="stockInput StockLeft" placeholder="0" min={0}></input> <br></br>
                                 </li>
                                 <li>
                                     <label htmlFor="fSauceVani">Vanilla</label> <br></br>
-                                    <input type="number" id="fSauceVani" name="fSauceVani" onChange={getSauceVani} className="stockInput" placeholder="0" min={0}></input> <br></br>
+                                    <input type="number" id="fSauceVani" name="fSauceVani" onChange={getSauceVani} className="stockInput StockMid" placeholder="0" min={0}></input> <br></br>
 
                                 </li>
                                 <li>
                                     <label htmlFor="fSauceCara">Caramel</label> <br></br>
-                                    <input type="number" id="fSauceCara" name="fSauceCara" onChange={getSauceCara} className="stockInput" placeholder="0" min={0}></input> <br></br>
+                                    <input type="number" id="fSauceCara" name="fSauceCara" onChange={getSauceCara} className="stockInput StockRight" placeholder="0" min={0}></input> <br></br>
                                 </li>
                             </ul>
 
                             {/* --Cones */}
-                            <br></br><h5>Cones</h5>
+                            <br></br><h5><u>Cones</u></h5>
                             <ul>
                                 {/* ----Yoghurt */}
                                 <li>
-                                    <h6>Yoghurt</h6>
+                                    <h5>Yoghurt</h5>
                                     <ul>
                                         <li>
                                             <label htmlFor="fYogSmall">Small</label> <br></br>
-                                            <input type="number" id="fYogSmall" name="fYogSmall" onChange={getConeYogSmall} className="stockInput" placeholder="0" min={0}></input> <br></br>
+                                            <input type="number" id="fYogSmall" name="fYogSmall" onChange={getConeYogSmall} className="stockInput StockLeft" placeholder="0" min={0}></input> <br></br>
                                         </li>
                                         <li>
                                             <label htmlFor="fYogMed">Medium</label> <br></br>
-                                            <input type="number" id="fYogMed" name="fYogMed" onChange={getConeYogMed} className="stockInput" placeholder="0" min={0}></input> <br></br>
+                                            <input type="number" id="fYogMed" name="fYogMed" onChange={getConeYogMed} className="stockInput StockMid" placeholder="0" min={0}></input> <br></br>
                                         </li>
                                         <li>
                                             <label htmlFor="fYogLarge">Large</label> <br></br>
-                                            <input type="number" id="fYogLarge" name="fYogLarge" onChange={getConeYogLarge} className="stockInput" placeholder="0" min={0}></input> <br></br>
+                                            <input type="number" id="fYogLarge" name="fYogLarge" onChange={getConeYogLarge} className="stockInput StockRight" placeholder="0" min={0}></input> <br></br>
                                         </li>
                                     </ul>
                                 </li>
                                 {/* ----Waffle */}
                                 <li>
-                                    <h6>Waffle</h6>
+                                    <h5>Waffle</h5>
                                     <ul>
                                         <li>
                                             <label htmlFor="fWafSmall">Small</label> <br></br>
-                                            <input type="number" id="fWafSmall" name="fWafSmall" onChange={getConeWafSmall} className="stockInput" placeholder="0" min={0}></input> <br></br>
+                                            <input type="number" id="fWafSmall" name="fWafSmall" onChange={getConeWafSmall} className="stockInput StockLeft" placeholder="0" min={0}></input> <br></br>
                                         </li>
                                         <li>
                                             <label htmlFor="fWafMed">Medium</label> <br></br>
-                                            <input type="number" id="fWafMed" name="fWafMed" onChange={getConeWafMed} className="stockInput" placeholder="0" min={0}></input> <br></br>
+                                            <input type="number" id="fWafMed" name="fWafMed" onChange={getConeWafMed} className="stockInput StockMid" placeholder="0" min={0}></input> <br></br>
 
                                         </li>
                                         <li>
                                             <label htmlFor="fWafLarge">Large</label> <br></br>
-                                            <input type="number" id="fWafLarge" name="fWafLarge" onChange={getConeWafLarge} className="stockInput" placeholder="0" min={0}></input> <br></br>
+                                            <input type="number" id="fWafLarge" name="fWafLarge" onChange={getConeWafLarge} className="stockInput StockRight" placeholder="0" min={0}></input> <br></br>
                                         </li>
                                     </ul>
                                 </li>
                                 {/* ----Bucket */}
                                 <li>
-                                    <h6>Bucket</h6>
+                                    <h5>Bucket</h5>
                                     <ul>
                                         <li>
                                             <label htmlFor="fBuckSmall">Small</label> <br></br>
-                                            <input type="number" id="fBuckSmall" name="fBuckSmall" onChange={getConeBuckSmall} className="stockInput" placeholder="0" min={0}></input> <br></br>
+                                            <input type="number" id="fBuckSmall" name="fBuckSmall" onChange={getConeBuckSmall} className="stockInput StockLeft" placeholder="0" min={0}></input> <br></br>
                                         </li>
                                         <li>
                                             <label htmlFor="fBuckMed">Medium</label> <br></br>
-                                            <input type="number" id="fBuckMed" name="fBuckMed" onChange={getConeBuckMed} className="stockInput" placeholder="0" min={0}></input> <br></br>
+                                            <input type="number" id="fBuckMed" name="fBuckMed" onChange={getConeBuckMed} className="stockInput StockMid" placeholder="0" min={0}></input> <br></br>
 
                                         </li>
                                         <li>
                                             <label htmlFor="fBuckLarge">Large</label> <br></br>
-                                            <input type="number" id="fBuckLarge" name="fBuckLarge" onChange={getConeBuckLarge} className="stockInput" placeholder="0" min={0}></input> <br></br>
+                                            <input type="number" id="fBuckLarge" name="fBuckLarge" onChange={getConeBuckLarge} className="stockInput StockRight" placeholder="0" min={0}></input> <br></br>
                                         </li>
                                     </ul>
                                 </li>
@@ -501,9 +501,10 @@ function Administrator() {
 
                             <br></br>
 
-                            <button type="submit" onClick={AddProduct}>Confirm</button>
+                            {/* Confirm/cancel button */}
+                            <button type="submit" className="btnConfirmCancel" onClick={AddProduct}>Confirm</button>
                             <br></br>
-                            <button type="button" onClick={() => {
+                            <button type="button" className="btnConfirmCancel" onClick={() => {
                                 document.getElementById("AddItemForm").style.display = 'none';
                                 document.getElementById("btnAddItem").style.display = 'block';
                             }}>Cancel</button>
@@ -513,7 +514,7 @@ function Administrator() {
 
                 <br></br>
                 <h3 style={{ display: 'none' }} id="hMessage">Product Successfully Added</h3>
-            </div>  
+            </div>
         </div >
     )
 }
