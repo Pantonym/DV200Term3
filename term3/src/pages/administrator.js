@@ -11,9 +11,19 @@ import { useState, useEffect } from 'react';
 import Axios from 'axios';
 
 // Import Bootstrap functionality
-import { Row, Col } from "react-bootstrap";
+import { Row, Col, Card } from "react-bootstrap";
+
+// Import Components
+import StockCard from "../components/StockCard";
 
 function Administrator() {
+
+    // Read
+    // --Store all products
+    const [allProducts, setAllProducts] = useState();
+    // --Re-Render
+    const [reRenderProducts, setReRenderProducts] = useState(false);
+
 
     // Base Item
     const [productName, setProductName] = useState();
@@ -39,6 +49,26 @@ function Administrator() {
     const [variationConeBucketSmall, setVariationConeBucketSmall] = useState();
     const [variationConeBucketMedium, setVariationConeBucketMedium] = useState();
     const [variationConeBucketLarge, setVariationConeBucketLarge] = useState();
+
+    // https://react.dev/reference/react/useRef
+    // https://www.w3schools.com/react/react_useref.asp
+
+    // Use effect for read all
+    useEffect(() => {
+
+        Axios.get('http://localhost:5000/api/products_get_all/')
+            .then(res => {
+                let productData = res.data;
+                console.log(productData);
+
+                let renderProducts = productData.map((item) => <StockCard key={item._id} name={item.name} description={item.description} price={item.price} stock={item.stock} />)
+
+                setAllProducts(renderProducts);
+                setReRenderProducts(false);
+            })
+            .catch(err => console.log(err))
+
+    }, [reRenderProducts])
 
     // Get statements for all:
     // --Base Item
@@ -119,6 +149,7 @@ function Administrator() {
 
     // Functions
     const AddProduct = (e) => {
+
         // Standardize the number types in case the user did not include one
         // --Sauces
         if (variationSauceChocolate === undefined) {
@@ -202,12 +233,14 @@ function Administrator() {
             hMessage.style.display = 'block';
             hMessage.innerHTML = "Please Fill All Fields For The Base Product";
         } else {
-            Axios.post('http://localhost:5000/api/product_add', payload);
+            Axios.post('http://localhost:5000/api/product_add', payload)
+
             console.log(payload);
 
             let hMessage = document.getElementById("hMessage");
             hMessage.style.display = 'block';
-            hMessage.innerHTML = "Product Successfully Added"
+            hMessage.innerHTML = "Product Successfully Added";
+            setReRenderProducts(true);
 
             document.getElementById("AddItemForm").style.display = 'none';
             document.getElementById("btnAddItem").style.display = 'block';
@@ -318,73 +351,10 @@ function Administrator() {
 
             {/* Inventory Management */}
             <div id="InventoryManagementDiv" style={{ display: 'none' }} className="Abel">
-                <Row style={{ fontSize: "Large" }}>
-                    <Col className="col-1"></Col>
-                    <Col className="col-3 text-end">
-                        <br></br>
-                        <img src={IceCream1} className="InvItem"></img>
-                    </Col>
-
-                    <Col className="col-5 text-start">
-                        <br></br>
-                        <div>
-                            <label className="inline">Name: </label>
-                            <p className="inline" id="InvName">Vanilla Ice Cream</p>
-                        </div>
-
-                        <div>
-                            <label className="inline">Description: </label>
-                            <p className="inline" id="InvDesc">Lorum Ipsum Solor Dit Amet</p>
-                        </div>
-
-                        <div>
-                            <label className="inline">Price: </label>
-                            <p className="inline" id="InvPrice">R80</p>
-                        </div>
-
-                        <div>
-                            <label className="inline">Stock: </label>
-                            <p className="inline" id="InvPrice"></p>
-                            <label className="inline"> Units</label>
-                        </div>
-                    </Col>
-
-                    <Col className="col-3"></Col>
-                </Row>
 
                 <br></br>
 
-                <Row style={{ fontSize: "Large" }}>
-                    <Col className="col-1"></Col>
-                    <Col className="col-3 text-end">
-                        <img src={IceCream1} className="InvItem"></img>
-                    </Col>
-
-                    <Col className="col-5 text-start">
-                        <div>
-                            <label className="inline">Name: </label>
-                            <p className="inline" id="InvName">Vanilla Ice Cream</p>
-                        </div>
-
-                        <div>
-                            <label className="inline">Description: </label>
-                            <p className="inline" id="InvDesc">Lorum Ipsum Solor Dit Amet</p>
-                        </div>
-
-                        <div>
-                            <label className="inline">Price: </label>
-                            <p className="inline" id="InvPrice">R80</p>
-                        </div>
-
-                        <div>
-                            <label className="inline">Stock: </label>
-                            <p className="inline" id="InvPrice"></p>
-                            <label className="inline"> Units</label>
-                        </div>
-                    </Col>
-
-                    <Col className="col-3"></Col>
-                </Row>
+                {allProducts}
 
                 <br></br>
 

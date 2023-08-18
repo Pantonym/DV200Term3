@@ -22,6 +22,7 @@ function SignUp() {
         setData({ ...data, [input.name]: input.value });
     }
 
+    // TODO Does not work
     const LoginSubmit = async (e) => {
         // stops the page from refreshing on submit
         e.preventDefault();

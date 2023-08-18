@@ -8,7 +8,6 @@ const ProductSchema = require('../models/products.js');
 const router = express();
 
 // Get all
-// --Updated
 router.get('/api/products_get_all/', async (req, res) => {
     const findAllProducts = await ProductSchema.find();
     res.json(findAllProducts);
@@ -34,7 +33,7 @@ router.post('/api/product_add/', async (req, res) => {
     const newProduct = new ProductSchema({
         name: req.body.name,
         tagline: req.body.tagline,
-        description: req.body.desc,
+        description: req.body.description,
         price: req.body.price,
         stock: req.body.stock,
         variations: {
@@ -65,7 +64,7 @@ router.post('/api/product_add/', async (req, res) => {
 
     await newProduct.save()
         .then(item => res.json(item))
-        .catch(error => res.status(400).json(error)) // status 500 is an internal service error
+        .catch(error => res.status(500).json(error)) // status 500 is an internal service error
 });
 
 //Delete
