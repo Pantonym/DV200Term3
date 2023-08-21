@@ -8,6 +8,7 @@ const ProductSchema = require('../models/products.js');
 const router = express();
 
 // Get all
+// --Updated
 router.get('/api/products_get_all/', async (req, res) => {
     const findAllProducts = await ProductSchema.find();
     res.json(findAllProducts);

@@ -61,7 +61,7 @@ function Administrator() {
                 let productData = res.data;
                 console.log(productData);
 
-                let renderProducts = productData.map((item) => <StockCard key={item._id} name={item.name} description={item.description} price={item.price} stock={item.stock} />)
+                let renderProducts = productData.map((item) => <StockCard key={item._id} id={item._id} name={item.name} description={item.description} price={item.price} stock={item.stock} />)
 
                 setAllProducts(renderProducts);
                 setReRenderProducts(false);
@@ -69,6 +69,7 @@ function Administrator() {
             .catch(err => console.log(err))
 
     }, [reRenderProducts])
+
 
     // Get statements for all:
     // --Base Item
@@ -376,7 +377,8 @@ function Administrator() {
                             {/* Base Item */}
                             <h3>Add Product</h3>
                             <label htmlFor="fName">Name:</label> <br></br>
-                            <input type="text" id="fName" name="fName" onChange={getName} placeholder="Enter the product's name" className="AdminInput"></input> <br></br>
+                            {/* TODO Change all onchanges to this */}
+                            <input type="text" id="fName" name="fName" onChange={(e) => setProductName(e.target.value)} placeholder="Enter the product's name" className="AdminInput"></input> <br></br>
 
                             <label htmlFor="fTagline">Tagline:</label> <br></br>
                             <input type="text" id="fTagline" name="fTagline" onChange={getTagLine} placeholder="Enter the product's tagline" className="AdminInput"></input> <br></br>
