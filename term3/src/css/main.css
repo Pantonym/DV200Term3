@@ -187,17 +187,8 @@
     height: 250px;
 }
 
-.InvImage {
-    height: 200px;
-    padding-right: 25px;
-}
-
 .stockInput {
     width: 75px;
-}
-
-.StockCard {
-    margin-bottom: 25px;
 }
 
 ul,

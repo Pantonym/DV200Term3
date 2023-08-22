@@ -354,7 +354,7 @@ function Administrator() {
             <div id="InventoryManagementDiv" style={{ display: 'none' }} className="Abel">
 
                 <br></br>
-
+                
                 {allProducts}
 
                 <br></br>

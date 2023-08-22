@@ -8,7 +8,6 @@ const ProductSchema = require('../models/products.js');
 const router = express();
 
 // Get all
-// --Updated
 router.get('/api/products_get_all/', async (req, res) => {
     const findAllProducts = await ProductSchema.find();
     res.json(findAllProducts);
@@ -29,7 +28,6 @@ router.put('/api/product_update/:id', async (req, res) => {
 });
 
 // Create
-// --Updated
 router.post('/api/product_add/', async (req, res) => {
     const newProduct = new ProductSchema({
         name: req.body.name,
