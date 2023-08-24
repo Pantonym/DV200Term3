@@ -61,7 +61,13 @@ function Administrator() {
                 let productData = res.data;
                 console.log(productData);
 
-                let renderProducts = productData.map((item) => <StockCard key={item._id} id={item._id} name={item.name} description={item.description} price={item.price} stock={item.stock} />)
+                let renderProducts = productData.map((item) => 
+                <StockCard key={item._id} id={item._id} name={item.name} description={item.description} price={item.price} stock={item.stock} tagline={item.tagline} 
+                choco={item.variations.sauce.chocolate} vanil={item.variations.sauce.vanilla} cara={item.variations.sauce.caramel} 
+                yogsmall={item.variations.cone.yoghurt.small} yogmed={item.variations.cone.yoghurt.medium} yoglarge={item.variations.cone.yoghurt.large}
+                wafsmall={item.variations.cone.waffle.small} wafmed={item.variations.cone.waffle.medium} waflarge={item.variations.cone.waffle.large}
+                bucksmall={item.variations.cone.bucket.small} buckmed={item.variations.cone.bucket.medium} bucklarge={item.variations.cone.bucket.large}
+                />)
 
                 setAllProducts(renderProducts);
                 setReRenderProducts(false);
@@ -69,84 +75,6 @@ function Administrator() {
             .catch(err => console.log(err))
 
     }, [reRenderProducts])
-
-
-    // Get statements for all:
-    // --Base Item
-    const getName = (e) => {
-        let val = e.target.value;
-        setProductName(val);
-    }
-    const getTagLine = (e) => {
-        let val = e.target.value;
-        setProductTagLine(val);
-    }
-    const getDesc = (e) => {
-        let val = e.target.value;
-        setProductDesc(val);
-    }
-    const getPrice = (e) => {
-        let val = +e.target.value;
-        setProductPrice(val);
-    }
-    const getStock = (e) => {
-        let val = +e.target.value;
-        setProductStock(val);
-    }
-    // --Item Variations
-    // ----Sauces
-    const getSauceChoco = (e) => {
-        let val = +e.target.value;
-        setVariationSauceChocolate(val);
-    }
-    const getSauceVani = (e) => {
-        let val = +e.target.value;
-        setVariationSauceVanilla(val);
-    }
-    const getSauceCara = (e) => {
-        let val = +e.target.value;
-        setVariationSauceCaramel(val);
-    }
-    // ----Cones
-    // ------Yoghurt
-    const getConeYogSmall = (e) => {
-        let val = +e.target.value;
-        setVariationConeYoghurtSmall(val);
-    }
-    const getConeYogMed = (e) => {
-        let val = +e.target.value;
-        setVariationConeYoghurtMedium(val);
-    }
-    const getConeYogLarge = (e) => {
-        let val = +e.target.value;
-        setVariationConeYoghurtLarge(val);
-    }
-    // ------Waffle
-    const getConeWafSmall = (e) => {
-        let val = +e.target.value;
-        setVariationConeWaffleSmall(val);
-    }
-    const getConeWafMed = (e) => {
-        let val = +e.target.value;
-        setVariationConeWaffleMedium(val);
-    }
-    const getConeWafLarge = (e) => {
-        let val = +e.target.value;
-        setVariationConeWaffleLarge(val);
-    }
-    // ------Bucket
-    const getConeBuckSmall = (e) => {
-        let val = +e.target.value;
-        setVariationConeBucketSmall(val);
-    }
-    const getConeBuckMed = (e) => {
-        let val = +e.target.value;
-        setVariationConeBucketMedium(val);
-    }
-    const getConeBuckLarge = (e) => {
-        let val = +e.target.value;
-        setVariationConeBucketLarge(val);
-    }
 
     // Functions
     const AddProduct = (e) => {
@@ -354,7 +282,7 @@ function Administrator() {
             <div id="InventoryManagementDiv" style={{ display: 'none' }} className="Abel">
 
                 <br></br>
-                
+
                 {allProducts}
 
                 <br></br>
@@ -381,13 +309,13 @@ function Administrator() {
                             <input type="text" id="fName" name="fName" onChange={(e) => setProductName(e.target.value)} placeholder="Enter the product's name" className="AdminInput"></input> <br></br>
 
                             <label htmlFor="fTagline">Tagline:</label> <br></br>
-                            <input type="text" id="fTagline" name="fTagline" onChange={getTagLine} placeholder="Enter the product's tagline" className="AdminInput"></input> <br></br>
+                            <input type="text" id="fTagline" name="fTagline" onChange={(e) => setProductTagLine(e.target.value)} placeholder="Enter the product's tagline" className="AdminInput"></input> <br></br>
 
                             <label htmlFor="fDesc">Description:</label> <br></br>
-                            <input type="text" id="fDesc" name="fDesc" onChange={getDesc} placeholder="Enter the product's description" className="AdminInput"></input> <br></br>
+                            <input type="text" id="fDesc" name="fDesc" onChange={(e) => setProductDesc(e.target.value)} placeholder="Enter the product's description" className="AdminInput"></input> <br></br>
 
                             <label htmlFor="fPrice">Price:</label> <br></br>
-                            <input type="number" id="fPrice" name="fPrice" onChange={getPrice} placeholder="0" min={0} className="AdminInput"></input> <br></br>
+                            <input type="number" id="fPrice" name="fPrice" onChange={(e) => setProductPrice(e.target.value)} placeholder="0" min={0} className="AdminInput"></input> <br></br>
 
                             <br></br>
                             {/* Variations */}
@@ -397,16 +325,16 @@ function Administrator() {
                             <ul>
                                 <li>
                                     <label htmlFor="fSauceChoco">Chocolate</label> <br></br>
-                                    <input type="number" id="fSauceChoco" name="fSauceChoco" onChange={getSauceChoco} className="stockInput StockLeft" placeholder="0" min={0}></input> <br></br>
+                                    <input type="number" id="fSauceChoco" name="fSauceChoco" onChange={(e) => setVariationSauceChocolate(e.target.value)} className="stockInput StockLeft" placeholder="0" min={0}></input> <br></br>
                                 </li>
                                 <li>
                                     <label htmlFor="fSauceVani">Vanilla</label> <br></br>
-                                    <input type="number" id="fSauceVani" name="fSauceVani" onChange={getSauceVani} className="stockInput StockMid" placeholder="0" min={0}></input> <br></br>
+                                    <input type="number" id="fSauceVani" name="fSauceVani" onChange={(e) => setVariationSauceVanilla(e.target.value)} className="stockInput StockMid" placeholder="0" min={0}></input> <br></br>
 
                                 </li>
                                 <li>
                                     <label htmlFor="fSauceCara">Caramel</label> <br></br>
-                                    <input type="number" id="fSauceCara" name="fSauceCara" onChange={getSauceCara} className="stockInput StockRight" placeholder="0" min={0}></input> <br></br>
+                                    <input type="number" id="fSauceCara" name="fSauceCara" onChange={(e) => setVariationSauceCaramel(e.target.value)} className="stockInput StockRight" placeholder="0" min={0}></input> <br></br>
                                 </li>
                             </ul>
 
@@ -419,15 +347,15 @@ function Administrator() {
                                     <ul>
                                         <li>
                                             <label htmlFor="fYogSmall">Small</label> <br></br>
-                                            <input type="number" id="fYogSmall" name="fYogSmall" onChange={getConeYogSmall} className="stockInput StockLeft" placeholder="0" min={0}></input> <br></br>
+                                            <input type="number" id="fYogSmall" name="fYogSmall" onChange={(e) => setVariationConeYoghurtSmall(e.target.value)} className="stockInput StockLeft" placeholder="0" min={0}></input> <br></br>
                                         </li>
                                         <li>
                                             <label htmlFor="fYogMed">Medium</label> <br></br>
-                                            <input type="number" id="fYogMed" name="fYogMed" onChange={getConeYogMed} className="stockInput StockMid" placeholder="0" min={0}></input> <br></br>
+                                            <input type="number" id="fYogMed" name="fYogMed" onChange={(e) => setVariationConeYoghurtMedium(e.target.value)} className="stockInput StockMid" placeholder="0" min={0}></input> <br></br>
                                         </li>
                                         <li>
                                             <label htmlFor="fYogLarge">Large</label> <br></br>
-                                            <input type="number" id="fYogLarge" name="fYogLarge" onChange={getConeYogLarge} className="stockInput StockRight" placeholder="0" min={0}></input> <br></br>
+                                            <input type="number" id="fYogLarge" name="fYogLarge" onChange={(e) => setVariationConeYoghurtLarge(e.target.value)} className="stockInput StockRight" placeholder="0" min={0}></input> <br></br>
                                         </li>
                                     </ul>
                                 </li>
@@ -437,16 +365,16 @@ function Administrator() {
                                     <ul>
                                         <li>
                                             <label htmlFor="fWafSmall">Small</label> <br></br>
-                                            <input type="number" id="fWafSmall" name="fWafSmall" onChange={getConeWafSmall} className="stockInput StockLeft" placeholder="0" min={0}></input> <br></br>
+                                            <input type="number" id="fWafSmall" name="fWafSmall" onChange={(e) => setVariationConeWaffleSmall(e.target.value)} className="stockInput StockLeft" placeholder="0" min={0}></input> <br></br>
                                         </li>
                                         <li>
                                             <label htmlFor="fWafMed">Medium</label> <br></br>
-                                            <input type="number" id="fWafMed" name="fWafMed" onChange={getConeWafMed} className="stockInput StockMid" placeholder="0" min={0}></input> <br></br>
+                                            <input type="number" id="fWafMed" name="fWafMed" onChange={(e) => setVariationConeWaffleMedium(e.target.value)} className="stockInput StockMid" placeholder="0" min={0}></input> <br></br>
 
                                         </li>
                                         <li>
                                             <label htmlFor="fWafLarge">Large</label> <br></br>
-                                            <input type="number" id="fWafLarge" name="fWafLarge" onChange={getConeWafLarge} className="stockInput StockRight" placeholder="0" min={0}></input> <br></br>
+                                            <input type="number" id="fWafLarge" name="fWafLarge" onChange={(e) => setVariationConeWaffleLarge(e.target.value)} className="stockInput StockRight" placeholder="0" min={0}></input> <br></br>
                                         </li>
                                     </ul>
                                 </li>
@@ -456,16 +384,16 @@ function Administrator() {
                                     <ul>
                                         <li>
                                             <label htmlFor="fBuckSmall">Small</label> <br></br>
-                                            <input type="number" id="fBuckSmall" name="fBuckSmall" onChange={getConeBuckSmall} className="stockInput StockLeft" placeholder="0" min={0}></input> <br></br>
+                                            <input type="number" id="fBuckSmall" name="fBuckSmall" onChange={(e) => setVariationConeBucketSmall(e.target.value)} className="stockInput StockLeft" placeholder="0" min={0}></input> <br></br>
                                         </li>
                                         <li>
                                             <label htmlFor="fBuckMed">Medium</label> <br></br>
-                                            <input type="number" id="fBuckMed" name="fBuckMed" onChange={getConeBuckMed} className="stockInput StockMid" placeholder="0" min={0}></input> <br></br>
+                                            <input type="number" id="fBuckMed" name="fBuckMed" onChange={(e) => setVariationConeBucketMedium(e.target.value)} className="stockInput StockMid" placeholder="0" min={0}></input> <br></br>
 
                                         </li>
                                         <li>
                                             <label htmlFor="fBuckLarge">Large</label> <br></br>
-                                            <input type="number" id="fBuckLarge" name="fBuckLarge" onChange={getConeBuckLarge} className="stockInput StockRight" placeholder="0" min={0}></input> <br></br>
+                                            <input type="number" id="fBuckLarge" name="fBuckLarge" onChange={(e) => setVariationConeBucketLarge(e.target.value)} className="stockInput StockRight" placeholder="0" min={0}></input> <br></br>
                                         </li>
                                     </ul>
                                 </li>

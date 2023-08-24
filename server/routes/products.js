@@ -16,15 +16,52 @@ router.get('/api/products_get_all/', async (req, res) => {
 // Get Single. The ID is a Param, as anything after /: is a parameter. Req is short for request, not require.
 router.get('/api/product_get_single/:id', async (req, res) => {
     const findProduct = await ProductSchema.findById(req.params.id)
-    res.json(findProduct)
+    res.json(findProduct);
 });
 
 // Update. You can use .put or .patch
-router.put('/api/product_update/:id', async (req, res) => {
-    const { id } = req.params.id;
-    await ProductSchema.updateOne({ id }, req.body)
-        .then(response => res.json(response))
-        .catch(error => res.status(500).json(error))
+router.patch('/api/product_update/:id', async (req, res) => {
+    console.log(req.body);
+    let STOCK = +req.body.variations.cone.yoghurt.small + +req.body.variations.cone.yoghurt.medium + +req.body.variations.cone.yoghurt.large + +req.body.variations.cone.waffle.small + +req.body.variations.cone.waffle.medium + +req.body.variations.cone.waffle.large + +req.body.variations.cone.bucket.small + +req.body.variations.cone.bucket.medium + +req.body.variations.cone.bucket.large;
+
+    const findProduct = await new ProductSchema.updateOne(
+        { _id: req.params.id },
+        {
+            $set: {
+                name: req.body.name,
+                tagline: req.body.tagline,
+                description: req.body.description,
+                price: req.body.price,
+                stock: STOCK,
+                variations: {
+                    sauce: {
+                        chocolate: req.body.variations.sauce.chocolate,
+                        vanilla: req.body.variations.sauce.vanilla,
+                        caramel: req.body.variations.sauce.caramel
+                    },
+                    cone: {
+                        yoghurt: {
+                            small: req.body.variations.cone.yoghurt.small,
+                            medium: req.body.variations.cone.yoghurt.medium,
+                            large: req.body.variations.cone.yoghurt.large
+                        },
+                        waffle: {
+                            small: req.body.variations.cone.waffle.small,
+                            medium: req.body.variations.cone.waffle.medium,
+                            large: req.body.variations.cone.waffle.large
+                        },
+                        bucket: {
+                            small: req.body.variations.cone.bucket.small,
+                            medium: req.body.variations.cone.bucket.medium,
+                            large: req.body.variations.cone.bucket.large
+                        }
+                    }
+                }
+            }
+        }
+    )
+
+    res.json(findProduct);
 });
 
 // Create
