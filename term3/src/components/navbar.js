@@ -6,46 +6,80 @@ import Logo from '../Assets/images/Logo.svg';
 import Header from '../Assets/images/Header.svg';
 
 // Import Bootstrap functionality
-import { Card, Container, Row, Col, Nav } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function Navbar() {
 
-    return (
+    // If the user is an admin, show the admin page instead of checkout in the navbar
+    if (localStorage.getItem("Email") === "xdvxdvdxv@gmail.com") {
+        return (
 
-        <div className="nav_bg Container Abel">
-            <Row>
-                <Col>
-                    <img style={{ marginBottom: '-60px' }} src={Logo} alt="Logo" />
-                </Col>
+            <div className="nav_bg Container Abel">
+                <Row>
+                    <Col>
+                        <img style={{ marginBottom: '-60px' }} src={Logo} alt="Logo" />
+                    </Col>
 
-                <Col>
-                    <img src={Header} alt="Header" />
-                </Col>
+                    <Col>
+                        <img src={Header} alt="Header" />
+                    </Col>
 
-                <Col>
-                    <img style={{ marginBottom: '-60px', transform: 'scaleX(-1)' }} src={Logo} alt="Logo" />
-                </Col>
-            </Row>
+                    <Col>
+                        <img style={{ marginBottom: '-60px', transform: 'scaleX(-1)' }} src={Logo} alt="Logo" />
+                    </Col>
+                </Row>
 
-            <br></br>
+                <br></br>
 
-            <Row>
-                <Col style={{fontSize: '22px'}}>
-                    <a className="nav_link" href="/">Landing</a>
-                    <a className="nav_link" href="/products">Products</a>
-                    {/* Checkout will be invisible for admins */}
-                    <a className="nav_link" href="/checkout">Checkout</a>
-                    
-                    {/* Administrator will be hidden for users */}
-                    <a className="nav_link" href="/administrator">Administrator</a>
+                <Row>
+                    <Col style={{ fontSize: '22px' }}>
+                        <a className="nav_link" href="/">Landing</a>
+                        <a className="nav_link" href="/products">Products</a>
 
-                    <a className="nav_link" style={{marginRight: '0px'}} href="/signup">Account</a>
-                </Col>
-            </Row>
-        </div>
+                        <a className="nav_link" href="/administrator">Administrator</a>
 
-    )
+                        <a className="nav_link" style={{ marginRight: '0px' }} onClick={localStorage.clear()} href="/">Sign Out</a>
+                    </Col>
+                </Row>
+            </div>
+
+        )
+        // If the user is a normal user, show the checkout page instead of admin in the navbar
+    } else {
+        return (
+
+            <div className="nav_bg Container Abel">
+                <Row>
+                    <Col>
+                        <img style={{ marginBottom: '-60px' }} src={Logo} alt="Logo" />
+                    </Col>
+
+                    <Col>
+                        <img src={Header} alt="Header" />
+                    </Col>
+
+                    <Col>
+                        <img style={{ marginBottom: '-60px', transform: 'scaleX(-1)' }} src={Logo} alt="Logo" />
+                    </Col>
+                </Row>
+
+                <br></br>
+
+                <Row>
+                    <Col style={{ fontSize: '22px' }}>
+                        <a className="nav_link" href="/">Landing</a>
+                        <a className="nav_link" href="/products">Products</a>
+
+                        <a className="nav_link" href="/checkout">Checkout</a>
+
+                        <a className="nav_link" style={{ marginRight: '0px' }} href="/signup">Account</a>
+                    </Col>
+                </Row>
+            </div>
+
+        )
+    }
 }
 
 export default Navbar;

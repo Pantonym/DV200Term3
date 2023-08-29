@@ -15,28 +15,40 @@ import { Row, Col } from "react-bootstrap";
 
 function SignUp() {
 
-    const [data, setData] = useState({ email: "", password: "" });
+    // Get the email and password the user input
+    const [email, setEmail] = useState();
+    const [pass, setPass] = useState();
     const [error, setError] = useState("");
 
-    const DataChange = ({ currentTarget: input }) => {
-        setData({ ...data, [input.name]: input.value });
+    // Change the variables every time the user changes an input
+    const DataChange = () => {
+        let Email = document.getElementById("inpEmail").value;
+        let Password = document.getElementById("inpPass").value;
+
+        setEmail(Email);
+        setPass(Password);
     }
 
-    // TODO Does not work
+    // Login function
     const LoginSubmit = async (e) => {
-        // stops the page from refreshing on submit
+        // --stops the page from refreshing on submit
         e.preventDefault();
 
         try {
-            const URL = "http://localhost:5000/auth";
+            var data = { email: email, password: pass }
+
+            const URL = "http://localhost:5000/api/loginUser";
             const { data: res } = await Axios.post(URL, data);
 
-            // Save token to localStorage
+            // --Save the email to localStorage (for changing the navbar)
+            localStorage.setItem("Email", email);
+            // --Save token to localStorage
             localStorage.setItem("token", res.data);
-            window.location = "/landing"
+            // --Return to the home page
+            window.location = "/";
 
-            console.log(localStorage.getItem("token"));
         } catch (error) {
+            // --return the error
             if (error.response && error.response.status >= 400 && error.response.status <= 500) {
                 setError(error.response.data.message);
             }
@@ -87,23 +99,24 @@ function SignUp() {
                 <Col></Col>
             </Row>
 
+            {/* Login Form */}
             <Row style={{ display: 'none', zIndex: '9', position: 'relative' }} id="LoginRow">
                 <Col></Col>
                 <Col style={{ backgroundColor: '#f8f7f2', height: '350px' }}>
-
+                    {/* --Login form submit */}
                     <form onSubmit={LoginSubmit}>
                         <h3>Log In</h3>
 
                         <div className="ConfirmDiv">
                             <label className="inline">Email</label>
                             <br></br>
-                            <input type="input" className="BillingInput" placeholder="Email" onChange={DataChange} required></input>
+                            <input type="input" className="BillingInput" placeholder="Email" id="inpEmail" onChange={DataChange} required></input>
                         </div>
 
                         <div className="ConfirmDiv">
                             <label className="inline">Password</label>
                             <br></br>
-                            <input type="input" className="BillingInput" placeholder="Password" onChange={DataChange} required></input>
+                            <input type="input" className="BillingInput" placeholder="Password" id="inpPass" onChange={DataChange} required></input>
                         </div>
 
                         {error && <div>{error}</div>}
@@ -111,6 +124,7 @@ function SignUp() {
 
                     </form>
 
+                    {/* --Change back to Sign Up */}
                     <br></br>
                     <h5>Don't have an account?</h5>
                     <button type="button" id="btnLogin" onClick={() => {

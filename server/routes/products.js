@@ -24,7 +24,7 @@ router.patch('/api/product_update/:id', async (req, res) => {
     console.log(req.body);
     let STOCK = +req.body.variations.cone.yoghurt.small + +req.body.variations.cone.yoghurt.medium + +req.body.variations.cone.yoghurt.large + +req.body.variations.cone.waffle.small + +req.body.variations.cone.waffle.medium + +req.body.variations.cone.waffle.large + +req.body.variations.cone.bucket.small + +req.body.variations.cone.bucket.medium + +req.body.variations.cone.bucket.large;
 
-    const findProduct = await new ProductSchema.updateOne(
+    const findProduct = await ProductSchema.updateOne(
         { _id: req.params.id },
         {
             $set: {

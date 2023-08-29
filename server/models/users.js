@@ -18,6 +18,9 @@ const UserSchema = new mongoose.Schema({
     }
 });
 
+// Generate a JWT. In the .env file, on line 3, type:
+// JWTPRIVATEKEY=anything
+// You can use literally anything as the JWT key (as it uses whatever you type as an algorithm to generate a token)
 UserSchema.methods.generateAuthToken = function () {
     const token = jwt.sign({ _id: this.id }, process.env.JWTPRIVATEKEY, {
         expiresIn: "7d",
@@ -25,15 +28,5 @@ UserSchema.methods.generateAuthToken = function () {
     return token;
 };
 
-const User = mongoose.model("user", UserSchema);
-
-const validate = (data) => {
-    const schema = joi.object({
-        username: joi.string().required().label("Username"),
-        email: joi.string().email().required().label("email"),
-        password: passComplex().required().label("Password"),
-    });
-    return schema.validate(data);
-}
-
-module.exports = { User, validate };
+const User = mongoose.model('User', UserSchema);
+module.exports = User;

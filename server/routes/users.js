@@ -1,68 +1,55 @@
-const express = require('express')
-const router = express()
-const UserSchema = require('../models/users')
+const express = require('express');
+const router = express();
+const User = require('../models/users');
 const bcrypt = require("bcrypt");
-
-router.post("/auth", async (req, res) => {
-    try {
-        const { error } = validate(req.body);
-        if (error)
-            return res.status(400).send({ message: error.details[0].message });
-
-        const user = await User.findOne({ email: req.body.email });
-        if (user)
-            return res
-                .status(409)
-                .send({ message: "User with given email already Exist!" });
-
-        const salt = await bcrypt.genSalt(Number(process.env.SALT));
-        const hashPassword = await bcrypt.hash(req.body.password, salt);
-
-        // ... means from the page we are in, invoke this
-        await new User({ ...req.body, password: hashPassword }).save();
-        res.status(201).send({ message: "User created successfully" });
-    } catch (error) {
-        res.status(500).send({ message: "Internal Server Error" });
-    }
-});
+const Joi = require("joi");
 
 // Login User
 router.post('/api/loginUser', async (req, res) => {
 
-    const findUser = await UserSchema.findOne({
+    // --Wait for the server to find an email matching the email entered by the user
+    const findUser = await User.findOne({
         email: req.body.email,
     })
 
+    // --If a matching email was found, do the following
     if (findUser != null) {
 
+        // ----Test if the password is the same as the one in the database
         if (findUser.password === req.body.password) {
-            res.send("User Logged in");
+            console.log("User Logged in");
+
+            // ------Generate a JWT.
+            const token = findUser.generateAuthToken();
+
+            // ------Return the JWT to the Client folder (term3) so it can be saved to localStorage. This is done because you cannot save to localStorage in the server folder.
+            res.status(200).send({ data: token, message: "logged in successfully" });
         } else {
             res.send("Email and password does not match");
+            console.log("Email and password does not match");
         }
 
+        // --If no matchign email is found, send the following email:
     } else {
         res.send("User not found");
+        console.log("User not found");
     }
 
 })
 
-// DELETE THE FOLLOWING, IT RETURNS SECURITY INFORMATION, THIS SI JUST FOR DEVELOPMENT PHASE;
-// Read All
+// Get All
+// --Delete after testing is done
 router.get('/api/getUsers', async (req, res) => {
-    const findUser = await UserSchema.find();
-    res.json(findUser)
+    const AllUser = await User.find();
+    res.json(AllUser);
 });
 
 // Create
 router.post('/api/addUser/', async (req, res) => {
-    const user = new UserSchema({ ...req.body });
+    const user = new User({ ...req.body });
     await user.save()
         .then(response => res.json(response))
         .catch(error => res.status(500).json(error))
 });
-
-// login
-// router.post('/api/login', async
 
 module.exports = router;

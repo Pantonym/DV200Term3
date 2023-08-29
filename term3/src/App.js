@@ -21,12 +21,13 @@ function App() {
   return (
 
     <div className="App">
+
       <Navbar />
 
       <Routes>
         <Route path='/' element={<Landing />} />
         <Route path='/signup' element={<SignUp />} />
-        
+
         <Route path='/products' element={<Products />} />
         <Route path='/checkout' element={<Checkout />} />
         <Route path='/administrator' element={<Administrator />} />

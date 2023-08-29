@@ -11,7 +11,7 @@ import { useState, useEffect } from 'react';
 import Axios from 'axios';
 
 // Import Bootstrap functionality
-import { Row, Col, Card } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 
 // Import Components
 import StockCard from "../components/StockCard";
@@ -24,13 +24,11 @@ function Administrator() {
     // --Re-Render
     const [reRenderProducts, setReRenderProducts] = useState(false);
 
-
     // Base Item
     const [productName, setProductName] = useState();
     const [productTagLine, setProductTagLine] = useState();
     const [productDesc, setProductDesc] = useState();
     const [productPrice, setProductPrice] = useState();
-    const [productStock, setProductStock] = useState();
     // Item Variations
     // --Sauce
     const [variationSauceChocolate, setVariationSauceChocolate] = useState();
@@ -50,24 +48,21 @@ function Administrator() {
     const [variationConeBucketMedium, setVariationConeBucketMedium] = useState();
     const [variationConeBucketLarge, setVariationConeBucketLarge] = useState();
 
-    // https://react.dev/reference/react/useRef
-    // https://www.w3schools.com/react/react_useref.asp
-
     // Use effect for read all
     useEffect(() => {
 
         Axios.get('http://localhost:5000/api/products_get_all/')
             .then(res => {
                 let productData = res.data;
-                console.log(productData);
 
-                let renderProducts = productData.map((item) => 
-                <StockCard key={item._id} id={item._id} name={item.name} description={item.description} price={item.price} stock={item.stock} tagline={item.tagline} 
-                choco={item.variations.sauce.chocolate} vanil={item.variations.sauce.vanilla} cara={item.variations.sauce.caramel} 
-                yogsmall={item.variations.cone.yoghurt.small} yogmed={item.variations.cone.yoghurt.medium} yoglarge={item.variations.cone.yoghurt.large}
-                wafsmall={item.variations.cone.waffle.small} wafmed={item.variations.cone.waffle.medium} waflarge={item.variations.cone.waffle.large}
-                bucksmall={item.variations.cone.bucket.small} buckmed={item.variations.cone.bucket.medium} bucklarge={item.variations.cone.bucket.large}
-                />)
+                let renderProducts = productData.map((item) =>
+                    <StockCard key={item._id} id={item._id} name={item.name} description={item.description} price={item.price} stock={item.stock} tagline={item.tagline}
+                        choco={item.variations.sauce.chocolate} vanil={item.variations.sauce.vanilla} cara={item.variations.sauce.caramel}
+                        yogsmall={item.variations.cone.yoghurt.small} yogmed={item.variations.cone.yoghurt.medium} yoglarge={item.variations.cone.yoghurt.large}
+                        wafsmall={item.variations.cone.waffle.small} wafmed={item.variations.cone.waffle.medium} waflarge={item.variations.cone.waffle.large}
+                        bucksmall={item.variations.cone.bucket.small} buckmed={item.variations.cone.bucket.medium} bucklarge={item.variations.cone.bucket.large}
+                        landing={item.landing}
+                    />)
 
                 setAllProducts(renderProducts);
                 setReRenderProducts(false);
@@ -156,6 +151,8 @@ function Administrator() {
             }
         }
 
+        console.log(payload);
+
         // If the user left out an item
         if (productName === undefined || productTagLine === undefined || productDesc === undefined || productPrice === undefined) {
             let hMessage = document.getElementById("hMessage");
@@ -163,8 +160,6 @@ function Administrator() {
             hMessage.innerHTML = "Please Fill All Fields For The Base Product";
         } else {
             Axios.post('http://localhost:5000/api/product_add', payload)
-
-            console.log(payload);
 
             let hMessage = document.getElementById("hMessage");
             hMessage.style.display = 'block';
@@ -305,7 +300,6 @@ function Administrator() {
                             {/* Base Item */}
                             <h3>Add Product</h3>
                             <label htmlFor="fName">Name:</label> <br></br>
-                            {/* TODO Change all onchanges to this */}
                             <input type="text" id="fName" name="fName" onChange={(e) => setProductName(e.target.value)} placeholder="Enter the product's name" className="AdminInput"></input> <br></br>
 
                             <label htmlFor="fTagline">Tagline:</label> <br></br>

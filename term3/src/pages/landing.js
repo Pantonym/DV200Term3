@@ -1,6 +1,13 @@
 // Import React functionality
 import React from "react";
 
+// Import Axios
+import Axios from "axios";
+
+// Import Components
+import ItemCard from "../components/ItemCard";
+import NewCard from "../components/NewCard";
+
 // Import Bootstrap functionality
 import { Row, Col } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.css';
@@ -18,7 +25,39 @@ import IceCream3 from '../Assets/images/items/IceCream3.png';
 
 import Banner2 from '../Assets/images/banner2.png';
 
+// Import UseState and Effect
+import { useState, useEffect } from 'react';
+
 function Landing() {
+
+    // --Store all products
+    const [newProducts, setNewProducts] = useState();
+    // --Re-Render
+    const [reRenderProducts, setReRenderProducts] = useState(false);
+
+    // Use effect for read all
+    useEffect(() => {
+
+        Axios.get('http://localhost:5000/api/products_get_all/')
+            .then(res => {
+                let productData = res.data;
+                console.log(productData);
+
+                let renderProducts = productData.map((item) => 
+                <NewCard key={item._id} id={item._id} name={item.name} description={item.description} price={item.price} stock={item.stock} tagline={item.tagline} 
+                choco={item.variations.sauce.chocolate} vanil={item.variations.sauce.vanilla} cara={item.variations.sauce.caramel} 
+                yogsmall={item.variations.cone.yoghurt.small} yogmed={item.variations.cone.yoghurt.medium} yoglarge={item.variations.cone.yoghurt.large}
+                wafsmall={item.variations.cone.waffle.small} wafmed={item.variations.cone.waffle.medium} waflarge={item.variations.cone.waffle.large}
+                bucksmall={item.variations.cone.bucket.small} buckmed={item.variations.cone.bucket.medium} bucklarge={item.variations.cone.bucket.large}
+                Landing={item.Landing}
+                />)
+
+                setNewProducts(renderProducts);
+                setReRenderProducts(false);
+            })
+            .catch(err => console.log(err))
+
+    }, [reRenderProducts])
 
     // Function to change the content of the item depending on what has been selected
     const ChangeSelected = (ID) => {
@@ -156,46 +195,7 @@ function Landing() {
             <br></br>
 
             {/* New Items */}
-            <Row>
-                <Col className="text-end">
-                    <img src={IceCream1} alt="Item1" className="IceCreamImg" onClick={ChangeSelected("NewItem1")} id="NewItem1"></img>
-                    <button type="button" id="btnNewItem1" className="btnItem Abel" style={{ display: 'none' }}>Add to Cart</button>
-                </Col>
-
-                <Col className="text-start">
-                    <div className="ItemDescSmall Abel">
-                        <h5>VANILLA BISCUIT EXPRESS</h5>
-                        <h6>with CHOCOLATE SAUCE</h6>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                    </div>
-                </Col>
-
-                <Col className="text-end">
-                    <img src={IceCream2} alt="Item2" className="IceCreamImg" onClick={ChangeSelected("NewItem2")} id="NewItem2"></img>
-                    <button type="button" id="btnNewItem2" className="btnItem Abel" style={{ display: 'none' }}>Add to Cart</button>
-                </Col>
-
-                <Col className="text-start">
-                    <div className="ItemDescSmall Abel">
-                        <h5>COCONUT STRACCIATELLA</h5>
-                        <h6>with BITTERSWEET CHOCOLATE STRANDS</h6>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                    </div>
-                </Col>
-
-                <Col className="text-end">
-                    <img src={IceCream3} alt="Item3" className="IceCreamImg" onClick={ChangeSelected("NewItem3")} id="NewItem3"></img>
-                    <button type="button" id="btnNewItem3" className="btnItem Abel" style={{ display: 'none' }}>Add to Cart</button>
-                </Col>
-
-                <Col className="text-start">
-                    <div className="ItemDescSmall Abel">
-                        <h5>VANILLA TUMBLER PACKAGE</h5>
-                        <h6>with CHOCOLATE BALLS AND SAUCE</h6>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                    </div>
-                </Col>
-            </Row>
+            {newProducts}
 
             <br></br>
 
