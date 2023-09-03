@@ -29,7 +29,13 @@ router.put('/api/order_update/:id', async (req, res) => {
 
 // Create
 router.post('/api/order_add/', async (req, res) => {
-    const car = new OrderSchema({ ...req.body });
+    const car = new OrderSchema({
+
+        client: req.body.client,
+        orders: req.body.orders,
+        totalprice: req.body.totalprice
+
+    });
     await car.save()
         .then(response => res.json(response))
         .catch(error => res.status(500).json(error)) // status 500 is an internal service error

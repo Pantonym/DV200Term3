@@ -25,6 +25,10 @@ const ProductSchema = mongoose.Schema({
         type: Number,
         required: true
     },
+    image: {
+        type: String,
+        required: false
+    },
     variations: {
         sauce: {
             chocolate: {

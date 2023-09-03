@@ -4,6 +4,9 @@ import React from "react";
 // Import functionality for loading text
 import { useState, useEffect } from "react";
 
+// Axios import
+import Axios from 'axios';
+
 // Import Images
 import IceCream1 from '../Assets/images/items/IceCream1.png';
 
@@ -11,13 +14,37 @@ import IceCream1 from '../Assets/images/items/IceCream1.png';
 import { Card, Container, Row, Col } from "react-bootstrap";
 
 function SingleItem() {
+    const [productData, setProductData] = useState();
+
+    function AddToCart(id) {
+
+        let TotalPrice = document.getElementById("sedQty").value * productData.price;
+
+        let payload = {
+            client: localStorage.getItem("Email"),
+            orders: productData.name,
+            totalprice: TotalPrice
+        }
+
+        console.log(payload);
+
+        Axios.post('http://localhost:5000/api/order_add/', payload)
+
+    }
+
+    Axios.get('http://localhost:5000/api/product_get_single/' + localStorage.getItem("SingleItem"))
+        .then(res => {
+            setProductData(res.data);
+            console.log(productData);
+        })
+        .catch(err => console.log(err))
 
     return (
         <div className="beige_bg" style={{ height: 'auto' }}>
 
             <Row>
                 <Col></Col>
-                <Col><h3 id="ProductName" className="Lobster">Product Name</h3></Col>
+                <Col><h3 id="ProductName" className="Lobster">{productData.name}</h3></Col>
                 <Col></Col>
             </Row>
 
@@ -27,25 +54,30 @@ function SingleItem() {
                 <Col className="col-1"></Col>
 
                 <Col className="col-5">
-                    <img src={IceCream1} className="SingleImg"></img>
+                    <img src={'http://localhost:5000/images/' + productData.image} className="SingleImg"></img>
                 </Col>
 
                 <Col className="col-5 Abel text-start" style={{ fontSize: "Largest" }}>
-                    <div><p id="SinglePrice">R80</p></div>
+                    <div><p id="SinglePrice">R{productData.price}</p></div>
 
-                    <div><p id="SingleDesc">1 Unit of this item, Call to action Lorem Ipsum Solor Dolor Sit Amet</p></div>
+                    <div><p id="SingleDesc">{productData.description}</p></div>
 
                     <div>
                         <label className="inline" style={{ marginRight: '25px' }}>Flavour</label>
                         <select id="SelectFlavours" className="inline">
+                            <option value={'None'}>None</option>
                             <option value={'Chocolate'}>Chocolate</option>
+                            <option value={'Vanilla'}>Vanilla</option>
+                            <option value={'Caramel'}>Caramel</option>
                         </select>
                     </div>
 
                     <div>
                         <label className="inline" style={{ marginRight: '25px' }}>Bowl Size</label>
                         <select id="SelectSize" className="inline">
+                            <option value={'Small'}>Small</option>
                             <option value={'Medium'}>Medium</option>
+                            <option value={'Large'}>Large</option>
                         </select>
                     </div>
 
@@ -74,7 +106,7 @@ function SingleItem() {
                     <br></br>
 
                     <div>
-                        <button type="submit">Add To Cart</button>
+                        <button onClick={AddToCart(productData.id)}>Add To Cart</button>
                     </div>
                 </Col>
 
