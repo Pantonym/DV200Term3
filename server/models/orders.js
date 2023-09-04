@@ -23,6 +23,5 @@ const OrderSchema = mongoose.Schema({
 // 2. The Order section will be formatted in EXACTLY this format:
 // 2.1) "name, price, sauce, cone, conesize, restrictions, quantity; name, price, sauce, cone, conesize, restrictions, quantity; etc."
 // 2.2) This is to make it easier to break into sections to calculate and display on other pages. A for loop will run through and collect each item using the commas as a landmark.
-// It will then test to see if the new first letter (as each item will be deleted from the test string) is a ';'. If it is, it will run through the loop again until no items remain.
 
 module.exports = mongoose.model("Order", OrderSchema);

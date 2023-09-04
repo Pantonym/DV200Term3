@@ -14,28 +14,44 @@ import IceCream1 from '../Assets/images/items/IceCream1.png';
 import { Card, Container, Row, Col } from "react-bootstrap";
 
 function SingleItem() {
-    const [productData, setProductData] = useState();
+    const AddToCart = (id) => {
 
-    function AddToCart(id) {
+        let TotalPrice = document.getElementById("sedQty").value * sessionStorage.getItem("ProductPrice");
 
-        let TotalPrice = document.getElementById("sedQty").value * productData.price;
+        if (document.getElementsByName("Restrictions").value === undefined) {
+            var RESTRICTIONS = 'NoRes';
+        }
+
+        let ORDERS = sessionStorage.getItem("ProductName") + ', ' + sessionStorage.getItem("ProductPrice") + ', ' + document.getElementById("SelectFlavours").value + ', ' + document.getElementById("SelectSize").value + ', ' + document.getElementById("SelectType").value + ', ' + RESTRICTIONS + ', ' + document.getElementById("sedQty").value;
 
         let payload = {
             client: localStorage.getItem("Email"),
-            orders: productData.name,
+            orders: ORDERS,
             totalprice: TotalPrice
         }
 
-        console.log(payload);
+        if (localStorage.getItem("Email") === null) {
+            window.location = "/signup";
+        } else {
+            console.log(payload);
 
-        Axios.post('http://localhost:5000/api/order_add/', payload)
-
+            if (window.confirm("Are you sure you want to add this to your cart?") === true) {
+                Axios.post('http://localhost:5000/api/order_add/', payload);
+            }
+        }
     }
 
     Axios.get('http://localhost:5000/api/product_get_single/' + localStorage.getItem("SingleItem"))
         .then(res => {
-            setProductData(res.data);
-            console.log(productData);
+            let varData = res.data;
+
+            sessionStorage.setItem("ProductName", varData.name);
+            sessionStorage.setItem("Image", varData.image);
+
+            sessionStorage.setItem("ProductPrice", varData.price);
+            sessionStorage.setItem("ProductDesc", varData.description);
+
+            sessionStorage.setItem("ProductID", varData.id);
         })
         .catch(err => console.log(err))
 
@@ -44,7 +60,7 @@ function SingleItem() {
 
             <Row>
                 <Col></Col>
-                <Col><h3 id="ProductName" className="Lobster">{productData.name}</h3></Col>
+                <Col><h3 id="ProductName" className="Lobster">{sessionStorage.getItem("ProductName")}</h3></Col>
                 <Col></Col>
             </Row>
 
@@ -54,13 +70,13 @@ function SingleItem() {
                 <Col className="col-1"></Col>
 
                 <Col className="col-5">
-                    <img src={'http://localhost:5000/images/' + productData.image} className="SingleImg"></img>
+                    <img src={'http://localhost:5000/images/' + sessionStorage.getItem("Image")} className="SingleImg"></img>
                 </Col>
 
                 <Col className="col-5 Abel text-start" style={{ fontSize: "Largest" }}>
-                    <div><p id="SinglePrice">R{productData.price}</p></div>
+                    <div><p id="SinglePrice">R{sessionStorage.getItem("ProductPrice")}</p></div>
 
-                    <div><p id="SingleDesc">{productData.description}</p></div>
+                    <div><p id="SingleDesc">{sessionStorage.getItem("ProductDesc")}</p></div>
 
                     <div>
                         <label className="inline" style={{ marginRight: '25px' }}>Flavour</label>
@@ -69,6 +85,15 @@ function SingleItem() {
                             <option value={'Chocolate'}>Chocolate</option>
                             <option value={'Vanilla'}>Vanilla</option>
                             <option value={'Caramel'}>Caramel</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label className="inline" style={{ marginRight: '25px' }}>Bowl Type</label>
+                        <select id="SelectType" className="inline">
+                            <option value={'Yoghurt'}>Yoghurt Cup</option>
+                            <option value={'Waffle'}>Waffle Cone</option>
+                            <option value={'Bucket'}>Bucket</option>
                         </select>
                     </div>
 
@@ -83,30 +108,32 @@ function SingleItem() {
 
                     <div>
                         <label className="inline" style={{ marginRight: '25px' }}>Restrictions</label>
-                        <br></br>
-
-                        <label className="CheckLabel">No Restrictions</label>
-                        <input id="NoRes" type="checkbox"></input>
-                        <label className="CheckLabel">Gluten Free</label>
-                        <input id="GlutFree" type="checkbox"></input>
 
                         <br></br>
 
-                        <label className="CheckLabel">Lactose Intolerant</label>
-                        <input id="LacInt" type="checkbox"></input>
-                        <label className="CheckLabel">Vegan</label>
-                        <input id="Vegan" type="checkbox"></input>
+                        <input type="radio" id="NoRes" name="Restrictions" value="NoRes"></input>
+                        <label className="CheckLabel" for="NoRes">No Restrictions</label>
+
+                        <input type="radio" id="GlutFree" name="Restrictions" value="GlutFree"></input>
+                        <label className="CheckLabel" for="GlutFree">Gluten Free</label><br></br>
+
+                        <input type="radio" id="LacInt" name="Restrictions" value="LacInt"></input>
+                        <label className="CheckLabel" for="LacInt">Lactose Intolerant</label>
+
+                        <input type="radio" id="Vegan" name="Restrictions" value="Vegan"></input>
+                        <label className="CheckLabel" for="Vegan">Vegan</label>
+
                     </div>
 
                     <div>
                         <label className="inline" style={{ marginRight: '25px' }}>Quantity</label>
-                        <input id="sedQty" type="number"></input>
+                        <input id="sedQty" type="number" defaultValue={1}></input>
                     </div>
 
                     <br></br>
 
                     <div>
-                        <button onClick={AddToCart(productData.id)}>Add To Cart</button>
+                        <button type="submit" onClick={AddToCart}>Add To Cart</button>
                     </div>
                 </Col>
 

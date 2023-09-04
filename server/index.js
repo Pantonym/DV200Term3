@@ -8,6 +8,7 @@ const { log } = require('console');
 const productRoute = require('./routes/products');
 const userRoute = require('./routes/users');
 const orderRoute = require('./routes/orders');
+const placedOrderRoute = require('./routes/placedorders.js');
 
 // Same as require("dotenv").config();
 require('dotenv/config');
@@ -29,6 +30,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(productRoute);
 app.use(userRoute);
 app.use(orderRoute);
+app.use(placedOrderRoute);
 
 //goes to env file and pulls correct details from it, and connects to the mongo instance
 mongoose.connect(process.env.DB_CONNECTION, {

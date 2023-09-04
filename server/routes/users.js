@@ -46,7 +46,13 @@ router.get('/api/getUsers', async (req, res) => {
 
 // Create
 router.post('/api/addUser/', async (req, res) => {
-    const user = new User({ ...req.body });
+    const user = new User({
+
+        username: req.body.username,
+        email: req.body.email,
+        password: req.body.password
+
+    });
     await user.save()
         .then(response => res.json(response))
         .catch(error => res.status(500).json(error))

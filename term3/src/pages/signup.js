@@ -11,11 +11,12 @@ import React from "react";
 import '../App.css';
 
 // Bootstrap
-import { Row, Col } from "react-bootstrap";
+import { Row, Col, Button } from "react-bootstrap";
 
 function SignUp() {
 
     // Get the email and password the user input
+    const [username, setUsername] = useState();
     const [email, setEmail] = useState();
     const [pass, setPass] = useState();
     const [error, setError] = useState("");
@@ -25,6 +26,16 @@ function SignUp() {
         let Email = document.getElementById("inpEmail").value;
         let Password = document.getElementById("inpPass").value;
 
+        setEmail(Email);
+        setPass(Password);
+    }
+
+    const DataChangeSignIn = () => {
+        let Username = document.getElementById("inpSIUsername").value;
+        let Email = document.getElementById("inpSIEmail").value;
+        let Password = document.getElementById("inpSIPassword").value;
+
+        setUsername(Username)
         setEmail(Email);
         setPass(Password);
     }
@@ -55,46 +66,82 @@ function SignUp() {
         }
     }
 
+    // Sign In Function
+    const SignUpSubmit = async (e) => {
+        // --stops the page from refreshing on submit
+        e.preventDefault();
+
+        try {
+            const URLAdd = "http://localhost:5000/api/addUser/";
+
+            let payload = {
+                username: username,
+                email: email,
+                password: pass
+            }
+
+            Axios.post(URLAdd, payload)
+
+            var data = { email: email, password: pass }
+
+            const URL = "http://localhost:5000/api/loginUser";
+            const { data: res } = await Axios.post(URL, data);
+
+            // --Save the email to localStorage (for changing the navbar)
+            localStorage.setItem("Email", email);
+            // --Save token to localStorage
+            localStorage.setItem("token", res.data);
+            // --Return to the home page
+            window.location = "/";
+
+        } catch (error) {
+            // --return the error
+            if (error.response && error.response.status >= 400 && error.response.status <= 500) {
+                setError(error.response.data.message);
+            }
+        }
+    }
+
     return (
 
         <div className="login_bg Container Abel" style={{ height: '620px' }}>
             <Row style={{ display: 'block', zIndex: '9', position: 'relative' }} id="SignUpRow">
                 <Col></Col>
                 <Col style={{ backgroundColor: '#f8f7f2', height: '350px' }}>
-                    <div>
+                    <form onSubmit={SignUpSubmit}>
                         <h3>Sign Up</h3>
 
                         <div className="ConfirmDiv">
-                            <label className="inline">Name</label>
+                            <label className="inline">Username</label>
                             <br></br>
-                            <input type="input" className="BillingInput"></input>
-                        </div>
-
-                        <div className="ConfirmDiv">
-                            <label className="inline">Surname</label>
-                            <br></br>
-                            <input type="input" className="BillingInput"></input>
+                            <input type="text" className="BillingInput" id='inpSIUsername' onChange={DataChangeSignIn} required></input>
                         </div>
 
                         <div className="ConfirmDiv">
                             <label className="inline">Email</label>
                             <br></br>
-                            <input type="input" className="BillingInput"></input>
+                            <input type="email" className="BillingInput" id='inpSIEmail' onChange={DataChangeSignIn} required></input>
                         </div>
 
                         <div className="ConfirmDiv">
                             <label className="inline">Password</label>
                             <br></br>
-                            <input type="input" className="BillingInput"></input>
+                            <input type="password" className="BillingInput" id='inpSIPassword' onChange={DataChangeSignIn} required></input>
                         </div>
 
+                        <Button type='submit' style={{ fontSize: '20px' }}>Sign In</Button>
+                    </form>
+                    <br></br>
+                    <br></br>
+
+                    <div>
                         <h5>Already have an account?</h5>
                         <button type="button" id="btnLogin" onClick={() => {
                             document.getElementById("LoginRow").style.display = 'block';
                             document.getElementById("SignUpRow").style.display = 'none';
                         }}>Log In</button>
-
                     </div>
+
                 </Col>
                 <Col></Col>
             </Row>

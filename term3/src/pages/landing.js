@@ -7,6 +7,7 @@ import Axios from "axios";
 // Import Components
 import ItemCard from "../components/ItemCard";
 import NewCard from "../components/NewCard";
+import DiscountCard from "../components/discountCard";
 
 // Import Bootstrap functionality
 import { Row, Col } from "react-bootstrap";
@@ -32,25 +33,26 @@ function Landing() {
 
     // --Store all products
     const [newProducts, setNewProducts] = useState();
+    const [discountProducts, setDiscountProducts] = useState();
     // --Re-Render
     const [reRenderProducts, setReRenderProducts] = useState(false);
 
     // Use effect for read all
     useEffect(() => {
 
+        // New Products
         Axios.get('http://localhost:5000/api/products_get_all/')
             .then(res => {
                 let productData = res.data;
-                console.log(productData);
 
-                let renderProducts = productData.map((item) => 
-                <NewCard key={item._id} id={item._id} name={item.name} description={item.description} price={item.price} stock={item.stock} tagline={item.tagline} 
-                choco={item.variations.sauce.chocolate} vanil={item.variations.sauce.vanilla} cara={item.variations.sauce.caramel} 
-                yogsmall={item.variations.cone.yoghurt.small} yogmed={item.variations.cone.yoghurt.medium} yoglarge={item.variations.cone.yoghurt.large}
-                wafsmall={item.variations.cone.waffle.small} wafmed={item.variations.cone.waffle.medium} waflarge={item.variations.cone.waffle.large}
-                bucksmall={item.variations.cone.bucket.small} buckmed={item.variations.cone.bucket.medium} bucklarge={item.variations.cone.bucket.large}
-                image={item.image}
-                />)
+                let renderProducts = productData.map((item) =>
+                    <NewCard key={item._id} id={item._id} name={item.name} description={item.description} price={item.price} stock={item.stock} tagline={item.tagline}
+                        choco={item.variations.sauce.chocolate} vanil={item.variations.sauce.vanilla} cara={item.variations.sauce.caramel}
+                        yogsmall={item.variations.cone.yoghurt.small} yogmed={item.variations.cone.yoghurt.medium} yoglarge={item.variations.cone.yoghurt.large}
+                        wafsmall={item.variations.cone.waffle.small} wafmed={item.variations.cone.waffle.medium} waflarge={item.variations.cone.waffle.large}
+                        bucksmall={item.variations.cone.bucket.small} buckmed={item.variations.cone.bucket.medium} bucklarge={item.variations.cone.bucket.large}
+                        image={item.image}
+                    />)
 
                 setNewProducts(renderProducts);
                 setReRenderProducts(false);
@@ -58,6 +60,25 @@ function Landing() {
             .catch(err => console.log(err))
 
     }, [reRenderProducts])
+
+    // Discounted Products
+    Axios.get('http://localhost:5000/api/products_get_all/')
+        .then(res => {
+            let productData = res.data;
+
+            let renderProducts = productData.map((item) =>
+                <DiscountCard key={item._id} id={item._id} name={item.name} description={item.description} price={item.price} stock={item.stock} tagline={item.tagline}
+                    choco={item.variations.sauce.chocolate} vanil={item.variations.sauce.vanilla} cara={item.variations.sauce.caramel}
+                    yogsmall={item.variations.cone.yoghurt.small} yogmed={item.variations.cone.yoghurt.medium} yoglarge={item.variations.cone.yoghurt.large}
+                    wafsmall={item.variations.cone.waffle.small} wafmed={item.variations.cone.waffle.medium} waflarge={item.variations.cone.waffle.large}
+                    bucksmall={item.variations.cone.bucket.small} buckmed={item.variations.cone.bucket.medium} bucklarge={item.variations.cone.bucket.large}
+                    image={item.image}
+                />)
+
+            setDiscountProducts(renderProducts);
+            setReRenderProducts(false);
+        })
+        .catch(err => console.log(err))
 
     // Function to change the content of the item depending on what has been selected
     const ChangeSelected = (ID) => {
@@ -207,47 +228,7 @@ function Landing() {
             <br></br>
 
             {/* Discounts */}
-            <Row>
-                <Col className="text-end">
-                    <img src={IceCream1} alt="Item1" className="IceCreamImg" onClick={ChangeSelected("DiscItem1")} id="DiscItem1"></img>
-                    <button type="button" id="btnDiscItem1" className="btnItem Abel" style={{ display: 'none' }}>Add to Cart</button>
-                </Col>
-
-                <Col className="text-start">
-                    <div className="ItemDescSmall Abel">
-                        <h5>VANILLA BISCUIT EXPRESS</h5>
-                        <h6>with CHOCOLATE SAUCE</h6>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                    </div>
-                </Col>
-
-                <Col className="text-end">
-                    <img src={IceCream2} alt="Item2" className="IceCreamImg" onClick={ChangeSelected("DiscItem2")} id="DiscItem2"></img>
-                    <button type="button" id="btnDiscItem2" className="btnItem Abel" style={{ display: 'none' }}>Add to Cart</button>
-                </Col>
-
-                <Col className="text-start">
-                    <div className="ItemDescSmall Abel">
-                        <h5>COCONUT STRACCIATELLA</h5>
-                        <h6>with BITTERSWEET CHOCOLATE STRANDS</h6>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                    </div>
-                </Col>
-
-                <Col className="text-end">
-                    <img src={IceCream3} alt="Item3" className="IceCreamImg" onClick={ChangeSelected("DiscItem3")} id="DiscItem3"></img>
-                    <button type="button" id="btnDiscItem3" className="btnItem Abel" style={{ display: 'none' }}>Add to Cart</button>
-                </Col>
-
-                <Col className="text-start">
-                    <div className="ItemDescSmall Abel">
-                        <h5>VANILLA TUMBLER PACKAGE</h5>
-                        <h6>with CHOCOLATE BALLS AND SAUCE</h6>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                    </div>
-                </Col>
-            </Row>
-
+            {discountProducts}
             <br></br>
 
             {/* Hidden element that displays once an item is clicked. Contains information regarding clicked item */}

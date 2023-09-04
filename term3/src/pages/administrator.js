@@ -15,12 +15,14 @@ import { Row, Col } from "react-bootstrap";
 
 // Import Components
 import StockCard from "../components/StockCard";
+import OrderCard from "../components/ordercard";
 
 function Administrator() {
 
     // Read
     // --Store all products
     const [allProducts, setAllProducts] = useState();
+    const [allOrders, setAllOrders] = useState();
     // --Re-Render
     const [reRenderProducts, setReRenderProducts] = useState(false);
 
@@ -70,6 +72,19 @@ function Administrator() {
             .catch(err => console.log(err))
 
     }, [reRenderProducts])
+
+    // Orders display
+    Axios.get('http://localhost:5000/api/placedorder_get_all/')
+        .then(res => {
+            let productData = res.data;
+
+            let renderProducts = productData.map((item) =>
+                <OrderCard key={item._id} id={item._id} clientName={item.clientName} clientAddress={item.clientAddress} orderName={item.orderName} />)
+
+            setAllOrders(renderProducts);
+            setReRenderProducts(false);
+        })
+        .catch(err => console.log(err))
 
     // Functions
     const AddProduct = (e) => {
@@ -211,65 +226,8 @@ function Administrator() {
 
             {/* Order Management */}
             <div id="OrderManagementDiv" style={{ display: 'block' }} className="Abel">
-                <Row style={{ fontSize: "Large" }}>
-                    <Col className="col-1"></Col>
-                    <Col className="col-3 text-end">
-                        <br></br>
-                        <img src={IceCream1} className="OrderItem"></img>
-                    </Col>
-
-                    <Col className="col-5 text-start">
-                        <div>
-                            <br></br>
-                            <label className="inline">User:</label>
-                            <p className="inline" id="UserName">John Doe</p>
-                        </div>
-
-                        <div>
-                            <label className="inline">Address:</label>
-                            <p className="inline" id="UserAddress">21 Green Street, Pretoria</p>
-                        </div>
-
-                        <div>
-                            <label>Order:</label>
-                        </div>
-                        <div>
-                            <p id="OrderItem">1x Chocolate Raising Combo</p>
-                        </div>
-                    </Col>
-
-                    <Col className="col-3"></Col>
-                </Row>
-
                 <br></br>
-
-                <Row style={{ fontSize: "Large" }}>
-                    <Col className="col-1"></Col>
-                    <Col className="col-3 text-end">
-                        <img src={IceCream1} className="OrderItem"></img>
-                    </Col>
-
-                    <Col className="col-5 text-start">
-                        <div>
-                            <label className="inline">User:</label>
-                            <p className="inline" id="UserName">John Doe</p>
-                        </div>
-
-                        <div>
-                            <label className="inline">Address:</label>
-                            <p className="inline" id="UserAddress">21 Green Street, Pretoria</p>
-                        </div>
-
-                        <div>
-                            <label>Order:</label>
-                        </div>
-                        <div>
-                            <p id="OrderItem">1x Chocolate Raising Combo</p>
-                        </div>
-                    </Col>
-
-                    <Col className="col-3"></Col>
-                </Row>
+                {allOrders}
                 <br></br>
             </div>
 
