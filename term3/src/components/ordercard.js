@@ -8,10 +8,7 @@ import '../css/main.css';
 import Axios from 'axios';
 
 // Import Bootstrap functionality
-import { Row, Col, Card, Button } from "react-bootstrap";
-
-// Import UseState and Effect
-import { useState, useEffect } from 'react';
+import { Row, Col, Button } from "react-bootstrap";
 
 const OrderCard = (props) => {
 

@@ -1,9 +1,6 @@
 // Import React functionality
 import React from "react";
 
-// Import Images
-import IceCream1 from '../Assets/images/items/IceCream1.png';
-
 // Import UseState and Effect
 import { useState, useEffect } from 'react';
 

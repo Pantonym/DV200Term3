@@ -8,10 +8,10 @@ import '../css/main.css';
 import Axios from 'axios';
 
 // Import Bootstrap functionality
-import { Row, Col, Card, Button } from "react-bootstrap";
+import { Card, Button } from "react-bootstrap";
 
 // Import UseState and Effect
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 const StockCard = (props) => {
 
@@ -23,7 +23,6 @@ const StockCard = (props) => {
     const [productTagLine, setProductTagLine] = useState();
     const [productDesc, setProductDesc] = useState();
     const [productPrice, setProductPrice] = useState();
-    const [productLand, setProductLand] = useState();
     // Item Variations
     // --Sauce
     const [variationSauceChocolate, setVariationSauceChocolate] = useState();

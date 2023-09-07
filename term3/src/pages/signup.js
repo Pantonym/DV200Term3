@@ -1,5 +1,5 @@
 // Import UseState and Effect
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 // Axios import
 import Axios from "axios";

@@ -1,17 +1,11 @@
 // Import React functionality
 import React from "react";
 
-// Import functionality for loading text
-import { useState, useEffect } from "react";
-
 // Axios import
 import Axios from 'axios';
 
-// Import Images
-import IceCream1 from '../Assets/images/items/IceCream1.png';
-
 // Import Bootstrap functionality
-import { Card, Container, Row, Col } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 
 function SingleItem() {
     const AddToCart = (id) => {
