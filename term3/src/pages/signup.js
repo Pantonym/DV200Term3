@@ -105,6 +105,7 @@ function SignUp() {
     return (
 
         <div className="login_bg Container Abel" style={{ height: '620px' }}>
+            {/* Sign Up Form */}
             <Row style={{ display: 'block', zIndex: '9', position: 'relative' }} id="SignUpRow">
                 <Col></Col>
                 <Col style={{ backgroundColor: '#f8f7f2', height: '350px' }}>
@@ -167,7 +168,7 @@ function SignUp() {
                         </div>
 
                         {error && <div>{error}</div>}
-                        <button type='submit'>Sign In</button>
+                        <button type='submit' style={{borderRadius: '15px', padding: '10px', paddingLeft: '20px', paddingRight: '20px', fontSize: 'large', backgroundColor: '#f8f7f2', border: '3px solid black'}}>Sign In</button>
 
                     </form>
 

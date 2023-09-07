@@ -5,10 +5,10 @@ import React from "react";
 import Axios from 'axios';
 
 // Import Bootstrap functionality
-import { Row, Col, Card, Button } from "react-bootstrap";
+import { Row } from "react-bootstrap";
 
 // Import UseState and Effect
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 // Images
 import Banner3 from '../Assets/images/banner3.png';

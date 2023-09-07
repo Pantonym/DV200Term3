@@ -4,14 +4,11 @@ import '../App.css';
 // Import CSS
 import '../css/main.css';
 
-// Axios import
-import Axios from 'axios';
-
 // Import Bootstrap functionality
-import { Row, Col, Card, Button } from "react-bootstrap";
+import { Card, Button } from "react-bootstrap";
 
 // Import UseState and Effect
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 const DiscountCard = (props) => {
 
@@ -108,11 +105,7 @@ const DiscountCard = (props) => {
 
                 </Card.Body>
 
-                <Card.Img variant="bottom" src={'http://localhost:3000/images/' + props.image}>
-
-                    {/* {console.log('http://localhost:5000/images/' + props.image)} */}
-
-                </Card.Img>
+                {/* <Card.Img variant="bottom" src={'http://localhost:3000/images/' + props.image}></Card.Img> */}
             </Card >
         )
 

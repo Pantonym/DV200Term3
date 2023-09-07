@@ -4,24 +4,16 @@ import '../App.css';
 // Import CSS
 import '../css/main.css';
 
-// Axios import
-import Axios from 'axios';
-
 // Import Bootstrap functionality
-import { Row, Col, Card, Button } from "react-bootstrap";
+import { Card, Button } from "react-bootstrap";
 
 // Import UseState and Effect
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 const NewCard = (props) => {
 
     const [oneClick, setOneClick] = useState(false);
 
-    // Base Item
-    const [productName, setProductName] = useState();
-    const [productTagLine, setProductTagLine] = useState();
-    const [productDesc, setProductDesc] = useState();
-    const [productPrice, setProductPrice] = useState();
     // Item Variations
     // --Sauce
     const [variationSauceChocolate, setVariationSauceChocolate] = useState();
@@ -113,11 +105,8 @@ const NewCard = (props) => {
 
                 </Card.Body>
 
-                <Card.Img variant="bottom" src={'http://localhost:3000/images/' + props.image}>
-
-                    {/* {console.log('http://localhost:5000/images/' + props.image)} */}
-
-                </Card.Img>
+                {/* Image does not work - debugging failed */}
+                {/* <Card.Img variant="bottom" src={'http://localhost:3000/images/' + props.image}></Card.Img> */}
             </Card >
         )
 

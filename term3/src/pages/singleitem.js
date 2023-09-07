@@ -70,7 +70,8 @@ function SingleItem() {
                 <Col className="col-1"></Col>
 
                 <Col className="col-5">
-                    <img src={'http://localhost:5000/images/' + sessionStorage.getItem("Image")} className="SingleImg"></img>
+                    {/* Image does not function */}
+                    {/* <img src={'http://localhost:5000/images/' + sessionStorage.getItem("Image")} className="SingleImg"></img> */}
                 </Col>
 
                 <Col className="col-5 Abel text-start" style={{ fontSize: "Largest" }}>

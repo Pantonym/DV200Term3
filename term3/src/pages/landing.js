@@ -5,7 +5,6 @@ import React from "react";
 import Axios from "axios";
 
 // Import Components
-import ItemCard from "../components/ItemCard";
 import NewCard from "../components/NewCard";
 import DiscountCard from "../components/discountCard";
 
@@ -18,12 +17,7 @@ import Carousel from 'react-bootstrap/Carousel';
 import Carousel1 from '../Assets/images/items/carousel1.jpg';
 import Carousel2 from '../Assets/images/items/carousel2.png';
 import Carousel3 from '../Assets/images/items/carousel3.jpg';
-
 import Banner from '../Assets/images/banner.png';
-import IceCream1 from '../Assets/images/items/IceCream1.png';
-import IceCream2 from '../Assets/images/items/IceCream2.png';
-import IceCream3 from '../Assets/images/items/IceCream3.png';
-
 import Banner2 from '../Assets/images/banner2.png';
 
 // Import UseState and Effect
@@ -79,72 +73,6 @@ function Landing() {
             setReRenderProducts(false);
         })
         .catch(err => console.log(err))
-
-    // Function to change the content of the item depending on what has been selected
-    const ChangeSelected = (ID) => {
-        return () => {
-            // --If-else statement to change the information displayed in the output
-            if (ID === "NewItem1") {
-                // ----Indicate which item is selected
-                document.getElementById(ID).style.border = "5px solid #3d1617";
-                document.getElementById("NewItem2").style.border = "none";
-                document.getElementById("NewItem3").style.border = "none";
-
-                document.getElementById("btnNewItem1").style.display = "block";
-                document.getElementById("btnNewItem2").style.display = "none";
-                document.getElementById("btnNewItem3").style.display = "none";
-            } else if (ID === "NewItem2") {
-                // ----Indicate which item is selected
-                document.getElementById("NewItem1").style.border = "none";
-                document.getElementById(ID).style.border = "5px solid #3d1617";
-                document.getElementById("NewItem3").style.border = "none";
-
-                document.getElementById("btnNewItem1").style.display = "none";
-                document.getElementById("btnNewItem2").style.display = "block";
-                document.getElementById("btnNewItem3").style.display = "none";
-            } else if (ID === "NewItem3") {
-                // ----Indicate which item is selected
-                document.getElementById("NewItem1").style.border = "none";
-                document.getElementById("NewItem2").style.border = "none";
-                document.getElementById(ID).style.border = "5px solid #3d1617";
-
-                document.getElementById("btnNewItem1").style.display = "none";
-                document.getElementById("btnNewItem2").style.display = "none";
-                document.getElementById("btnNewItem3").style.display = "block";
-            }
-
-            // --If-else statement to change the information displayed in the output
-            if (ID === "DiscItem1") {
-                // ----Indicate which item is selected
-                document.getElementById(ID).style.border = "5px solid #3d1617";
-                document.getElementById("DiscItem2").style.border = "none";
-                document.getElementById("DiscItem3").style.border = "none";
-
-                document.getElementById("btnDiscItem1").style.display = "block";
-                document.getElementById("btnDiscItem2").style.display = "none";
-                document.getElementById("btnDiscItem3").style.display = "none";
-            } else if (ID === "DiscItem2") {
-                // ----Indicate which item is selected
-                document.getElementById("DiscItem1").style.border = "none";
-                document.getElementById(ID).style.border = "5px solid #3d1617";
-                document.getElementById("DiscItem3").style.border = "none";
-
-                document.getElementById("btnDiscItem1").style.display = "none";
-                document.getElementById("btnDiscItem2").style.display = "block";
-                document.getElementById("btnDiscItem3").style.display = "none";
-            } else if (ID === "DiscItem3") {
-                // ----Indicate which item is selected
-                document.getElementById("DiscItem1").style.border = "none";
-                document.getElementById("DiscItem2").style.border = "none";
-                document.getElementById(ID).style.border = "5px solid #3d1617";
-
-                document.getElementById("btnDiscItem1").style.display = "none";
-                document.getElementById("btnDiscItem2").style.display = "none";
-                document.getElementById("btnDiscItem3").style.display = "block";
-            }
-
-        }
-    }
 
     return (
         // Div that holds all elements
@@ -229,22 +157,8 @@ function Landing() {
 
             {/* Discounts */}
             {discountProducts}
+            
             <br></br>
-
-            {/* Hidden element that displays once an item is clicked. Contains information regarding clicked item */}
-            <Row style={{ display: 'none' }} id="SelectedItemDisc">
-
-                <Col style={{ paddingLeft: '10%', paddingRight: '10%' }}>
-                    <h2 id="SelectedDiscItemHeading">COCONUT STRACCIATELLA</h2>
-                    <h4 id="SelectedDiscItemSubheading">with BITTERSWEET CHOCOLATE STRANDS</h4>
-                    <p id="SelectedDiscDesc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
-                </Col>
-
-                <Col></Col>
-            </Row>
-
             <br></br>
             <br></br>
         </div>
