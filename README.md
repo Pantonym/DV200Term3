@@ -15,18 +15,18 @@
 
 <!-- Logo and link to repository -->
 <p align="center">
-  <a href="https://github.com/Pantonym/DV200_Term2">
-    <img src="term3\src\assets\images\logo.svg" width="200px">
+  <a href="https://github.com/Pantonym/DV200Term3">
+    <img src="term3\src\Assets\images\Logo.svg" width="200px">
   </a>
 </p>
 
 <!-- Short Description -->
-<h3 align="center">VeriCalm: Medical Management Portal</h3>
-<p align="center"> This is a database management portal for a medical office, where receptionists can manage appointments, patients, doctors and their own profiles.
+<h3 align="center">Wintry West: No-SQL E-Commerce Store</h3>
+<p align="center"> This is an e-commerce website where MongoDB is sued to handle orders, carts, users and products.
     <br>
     <!-- Bug and New Feature Links -->
-    <a href="https://github.com/Pantonym/DV200_Term2/issues">Report Bug</a>
-    <a href="https://github.com/Pantonym/DV200_Term2/issues">Request Feature</a>
+    <a href="https://github.com/Pantonym/DV200Term3/issues">Report Bug</a>
+    <a href="https://github.com/Pantonym/DV200Term3/issues">Request Feature</a>
     <br>
 </p>
 
@@ -61,52 +61,47 @@
 
 <!--PROJECT DESCRIPTION-->
 ### Project Description
-VeriCalm is a medical database management portal that allows receptionists to add, update and delete doctor profiles, patient profiles and their own profiles. They can also add, delete and update appointments. The Head Receptionist is the SuperUser, and can therefore edit any entity in the database, whereas Receptionists can only edit their own profiles and the appointments. 
+Wintry West is an e-commmerce website that allows an administrator to add, update and delete products and orders. Users can add, update and personalize their orders and cart, as well as delete from each. 
 
 ### Built With
 * CSS
 * JavaScript
 * HTML
-* PHP
-* MySql
-* Xampp
+* Axios
+* MongoDB
 
 <!-- GETTING STARTED -->
 ## Getting Started
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
 ### Prerequisites
-For development and testing, the latest version of Xampp is required. The latest version can be downloaded from [Apache Friends](https://www.apachefriends.org/download.html)
+For development and testing, a React App is required (New Terminal --> npm create-react-app)
 
 ### Installation
 
 Here are a couple of ways to clone this repo:
 
 1.  GitHub Desktop </br>
-    Enter `https://github.com/Pantonym/DV200_Term2.git` into the URL field and press the `Clone` button.
+    Enter `https://github.com/Pantonym/DV200Term3.git` into the URL field and press the `Clone` button.
 
 2.  Clone Repository </br>
     Run the following in the command-line to clone the project:
 
     ```sh
-    git clone https://github.com/Pantonym/DV200_Term2.git
+    git clone https://github.com/Pantonym/DV200Term3.git
     ```
 
 ## Features and Functionality
 <!-- CONCEPT PROCESS -->
 ## Concept Process
-
-I chose a simple and easy-to-understand design because the management portal controls appointments that are directly related to someone's wellbeing. Excessive styling would only distract from the purpose of the portal: medical appointments that are highly important. I used a very light purple as my background colour to give the text better visibility, as well as to compliment the orange used in the logo. It also adds to the light blue I used as my secondary colour, with my main colour being white  to add to the 'medical' feel I wanted to emulate. I included a lot of self study in this project, such as using password hashing and designing my login process before getting feedback on how to improve it.
+I chose a Western-themed website to create a contrast between selling cold products and the generic idea of a western theme, which usually includes warm climates. It also followes a very limited font and colour scheme to keep visuals consistent across pages and user types. I chose a mixture of light and dark browns to evoke the western theme, however I added red, blue and green to highlight important elements so they do not fade into the background. I worked with lecturers in contact sessions and class to get feedback on imporvements and other implementation ideas.
 
 <!-- Wireframes -->
 ### Wireframes
 
-![image1](assets/wireframes/Login.png)
-![image2](assets/wireframes/Landing.png)
-![image3](assets/wireframes/PatientPage.png)
-![image4](assets/wireframes/DoctorPage.png)
-![image5](assets/wireframes/ReseptionistPage.png)
-![image6](assets/wireframes/AddUser.png)
+![image1](Mockups/1.png)
+![image2](Mockups/2.png)
+![image3](Mockups/3.png)
 
 <!-- Development Process -->
 ## Development Process
