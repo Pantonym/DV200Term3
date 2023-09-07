@@ -106,51 +106,51 @@ I chose a Western-themed website to create a contrast between selling cold produ
 <!-- Development Process -->
 ## Development Process
 
-The `Development Process` is the technical implementations and functionality done for the portal.
+The `Development Process` is the technical implementations and functionality done for the e-commerse store.
 
 <!-- Implementation -->
 ### Implementation Process
 
-* I used `MySQL` through `Xampp`to create the database used in this project.
+* I used `Axios` to contact `MongoDB`to create the database used in this project, as well as the application `Insomnia` to test the functionality.
 
 <!-- Highlights -->
 #### Highlights
 
-* A great highlight was seeing the code come together; seeing my sql statements actually changing the database from the portal I made
-* Problem solving was also very fun, white bugs can be irritating if you don't know where they are coming from, it's always a highlight to implement code that works flawlessly on first try
-* Learning PHP was a great highlight as I began to understand how you can sue it to build websites. It definitely compliments my way of thinking more than conventional JavaScript and HTML.
+* A great highlight was when the Axios calls finally started to work through the Clinet folder (term3). 
+* Understanding the process of working through Axios to change data on MongoDB was a great pain until, all at once, it snapped and I knew that I had to do, which was rewarding.
+* Revisiting React was also interesting as it has interesting ways to communicate through pages.
 
 <!-- Challenges -->
 <!-- Explain the challenges faced with the project and why you think you faced it or how you think you'll solve it (if not solved), or how you solved it -->
 #### Challenges
 
-* The largest issue I had was understanding how to upload an image to the website. I solved it by seeking knowledge from those who understood the language better than I did so i may learn from them. 
+* The largest issue I had was understanding how to properly communicate between the client and server folders. I solved it by following videos supplied to us.
 
-* The code I created had a flaw: my register page was not created with universality in mind. I solved this by adding a register page for each of the databases, but I have now learned to create universal pages from the start of my PHP projects. 
+* A lot of repitition had ot be done to account for possible errors that could appear. 
 
-* Password Hashing was also a challenge, but I solved it by seeking knowledge from those who understood the language better than I did, learning as they explained how to properly implement the functionality.
+* JSON Web Tokens were also a struggle to understand at first, but I created a personal project to test how it could be done and how it works so i could learn to understand it.
 
-* Becoming overwhelmed with tracking every possible situation was also a challenge. For example, to make it easier to implement, I created one php file that changed its output based on several variables. Because of this, there are points where I had to re-orient myself and start reading from the start again to see what I had to change.
+* Axios not updating in time was also a large struggle to overcome, which I did by forcing it to wait at several stages.
 
 <!-- Future Implementation -->
 ### Future Implementation
 
-* I will remove the needless columns in the database. These columns include: password for non-receptionists and a signed in column, which was deprecated upon implementing $_SESSION compatibility to see the data of which user was signed in. 
+* Fixing the image displaying functionality.
 
-* The calendar could be made more interactive, since at this current point the dates are not clickable and it only highlights the current date. Date inputs are therefore delegated to an input type="date" and not the larger, more styled, calendar.
+* Potential redesigns of the website.
 
-* I would like to add multiple 'pages' to the tables that display all profiles, especially the patients page. These 'pages' would display 1-15 patients each, and therefore make it easier to read once more than 15 patients have been added.
+* Potentially adding more than one administrator.
 
-* I would also like to make the website completely responsive
+* I would also like to make the website completely responsive.
 
 <!-- Final Outcome -->
 ## Final Outcome
 <!-- MOCKUPS -->
 ### Mockups
 
-![image7](Mockups%20And%20Database/Mockup1.png)
-![image8](Mockups%20And%20Database/Mockup2.png)
-![image9](Mockups%20And%20Database/Mockup3.png)
+![image4](Mockups/1.png)
+![image5](Mockups/2.png)
+![image6](Mockups/3.png)
 
 <br>
 
@@ -160,7 +160,7 @@ The `Development Process` is the technical implementations and functionality don
   * Caution: The video cannot be included in the github repository as the file is larger than 100mb. Therefore, I have included a google drive link.
 <!-- <video src="Mockups And Database/VanWykNico_221179_DV200_Presentation_Video.mp4" controls="controls" style="max-width: 730px;"> -->
 
-[View Demonstration](https://drive.google.com/file/d/184F6lbd4yaS4TS12pho0h7AgWf0kZV1L/view?usp=sharing)
+[View Demonstration](https://drive.google.com/file/d/1kkyvBQf7xcH3WVw14Orgwra-TnQJpCte/view?usp=sharing)
 
 <!-- AUTHORS -->
 ## Author
@@ -175,7 +175,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 ## Contact
 **Nico van Wyk** - [221179@virtualwindow.co.za](mailto:221179@virtualwindow.co.za)
 
-* **Project Link** - https://github.com/Pantonym/DV200_Term2
+* **Project Link** - https://github.com/Pantonym/DV200Term3
 
 <!-- ACKNOWLEDGEMENTS -->
 <!-- all resources that you used and Acknowledgements here -->
@@ -184,4 +184,3 @@ Distributed under the MIT License. See `LICENSE` for more information.
 * [Lecturer](https://github.com/TsungaiKats)
 * [Figma](https://www.figma.com/)
 * [W3Schools](https://www.w3schools.com)
-* **Industry Professional** - Gerhard Herselman
