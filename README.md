@@ -1,22 +1,22 @@
 <!-- Project Info -->
 <br>
 
-![GitHub repo size](https://img.shields.io/github/repo-size/Pantonym/DV200_Term2?color=lightblue)
-![GitHub watchers](https://img.shields.io/github/watchers/Pantonym/DV200_Term2?color=lightblue)
-![GitHub language count](https://img.shields.io/github/languages/count/Pantonym/DV200_Term2?color=lightblue)
-![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/Pantonym/DV200_Term2?color=lightblue)
+![GitHub repo size](https://img.shields.io/github/repo-size/Pantonym/DV200Term3?color=lightblue)
+![GitHub watchers](https://img.shields.io/github/watchers/Pantonym/DV200Term3?color=lightblue)
+![GitHub language count](https://img.shields.io/github/languages/count/Pantonym/DV200Term3?color=lightblue)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/Pantonym/DV200Term3?color=lightblue)
 
 <!-- Name, Number, Subject and Term -->
 <h5 align="center" style="padding:0;margin:0;">Nico van Wyk</h5>
 <h5 align="center" style="padding:0;margin:0;">Student Number: 221179</h5>
-<h6 align="center">DV200 | Term 2</h6>
+<h6 align="center">DV200 | Term 3</h6>
 
 </br>
 
 <!-- Logo and link to repository -->
 <p align="center">
   <a href="https://github.com/Pantonym/DV200_Term2">
-    <img src="assets\images\Logo.svg" width="200px">
+    <img src="term3\src\assets\images\logo.svg" width="200px">
   </a>
 </p>
 
