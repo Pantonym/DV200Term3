@@ -10,9 +10,12 @@ import { Row, Col } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function Navbar() {
+    // Admin Sign In:
+    // xdvxdvdxv@gmail.com
+    // WaterBoy
 
     // If the user is an admin, show the admin page instead of checkout in the navbar
-    if (localStorage.getItem("Email") === "xdvxdvdxv@gmail.com") {
+    if (sessionStorage.getItem('Email') === "xdvxdvdxv@gmail.com") {
         return (
 
             <div className="nav_bg Container Abel">
@@ -39,7 +42,7 @@ function Navbar() {
 
                         <a className="nav_link" href="/administrator">Administrator</a>
 
-                        <a className="nav_link" style={{ marginRight: '0px' }} onClick={localStorage.clear()} href="/">Sign Out</a>
+                        <a className="nav_link" style={{ marginRight: '0px' }} onClick={() => { if( window.confirm('Are you sure you want to log out?') ) { sessionStorage.clear() }}} href="/signup">Sign Out</a>
                     </Col>
                 </Row>
             </div>

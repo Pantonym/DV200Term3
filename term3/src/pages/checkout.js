@@ -98,7 +98,7 @@ function Checkout() {
                 <div>
                     <button type="submit" id="btnConfirm" className="ConfirmDiv" onClick={OrderSubmit}>Place Order</button>
                     <br></br>
-                    <button type="submit" id="btnCancel" onClick={() => {document.getElementById("ConfirmOrder").style.display = 'none'}}>Cancel</button>
+                    <button type="submit" id="btnCancel" onClick={() => { document.getElementById("ConfirmOrder").style.display = 'none' }}>Cancel</button>
                 </div>
             </div>
 

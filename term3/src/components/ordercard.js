@@ -38,8 +38,9 @@ const OrderCard = (props) => {
                         <h5>Order: <br></br>{props.orderName}</h5> <br></br>
                     </div>
 
-                    {/* Delete and Update */}
+                    {/* Delete and Dispatch */}
                     <Button variant="danger" style={{ marginRight: '20px', visibility: 'visible' }} id={"btnDelete_" + props.id} onClick={() => DeleteFunc(props.id)}>DELETE</Button>
+                    <Button variant="info" style={{ marginRight: '20px', visibility: 'visible' }} id={"btnDelete_" + props.id} onClick={() => DeleteFunc(props.id)}>DISPATCH</Button>
                 </div >
             </Col>
             <Col></Col>

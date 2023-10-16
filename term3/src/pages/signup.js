@@ -52,9 +52,9 @@ function SignUp() {
             const { data: res } = await Axios.post(URL, data);
 
             // --Save the email to localStorage (for changing the navbar)
-            localStorage.setItem("Email", email);
+            sessionStorage.setItem("Email", email);
             // --Save token to localStorage
-            localStorage.setItem("token", res.data);
+            sessionStorage.setItem("token", res.data);
             // --Return to the home page
             window.location = "/";
 
@@ -88,9 +88,9 @@ function SignUp() {
             const { data: res } = await Axios.post(URL, data);
 
             // --Save the email to localStorage (for changing the navbar)
-            localStorage.setItem("Email", email);
+            sessionStorage.setItem("Email", email);
             // --Save token to localStorage
-            localStorage.setItem("token", res.data);
+            sessionStorage.setItem("token", res.data);
             // --Return to the home page
             window.location = "/";
 
