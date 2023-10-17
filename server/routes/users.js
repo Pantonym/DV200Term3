@@ -29,7 +29,7 @@ router.post('/api/loginUser', async (req, res) => {
             console.log("Email and password does not match");
         }
 
-        // --If no matchign email is found, send the following email:
+        // --If no matching email is found, send the following:
     } else {
         res.send("User not found");
         console.log("User not found");

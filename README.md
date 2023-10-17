@@ -126,11 +126,13 @@ The `Development Process` is the technical implementations and functionality don
 
 * The largest issue I had was understanding how to properly communicate between the client and server folders. I solved it by following videos supplied to us.
 
-* A lot of repitition had ot be done to account for possible errors that could appear. 
+* A lot of repetition had to be done to account for possible errors that could appear. 
 
-* JSON Web Tokens were also a struggle to understand at first, but I created a personal project to test how it could be done and how it works so i could learn to understand it.
+* JSON Web Tokens were also a struggle to understand at first, but I created a personal project to test how it could be done and how it works so I could learn to understand it.
 
 * Axios not updating in time was also a large struggle to overcome, which I did by forcing it to wait at several stages.
+
+* Image uploading was also an extreme challenge, but by joining a contact session and using different debugging methods, I implemented it successfully.
 
 <!-- Future Implementation -->
 ### Future Implementation
