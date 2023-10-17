@@ -11,6 +11,9 @@ import { Card, Button } from "react-bootstrap";
 import { useState } from 'react';
 
 const NewCard = (props) => {
+    // image displaying
+    const serverURL = 'http://localhost:5000';
+    const imageURL = `${serverURL}/images/${props.image}`;
 
     const [oneClick, setOneClick] = useState(false);
 
@@ -86,6 +89,10 @@ const NewCard = (props) => {
                             <h5>{props.description}</h5> <br></br>
                             <h5> Price: R{props.price}</h5> <br></br>
                             <h5> Stock: {props.stock} items</h5> <br></br>
+
+                            <img src={imageURL} alt={props.name} style={{ width: '250px', height: '250px' }}></img>
+                            <br></br>
+                            <br></br>
 
                             <Button variant="info" style={{ color: 'white', fontSize: '20px' }} onClick={() => {
                                 if (oneClick === false) {

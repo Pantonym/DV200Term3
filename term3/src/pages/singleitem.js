@@ -38,6 +38,10 @@ function SingleItem() {
     Axios.get('http://localhost:5000/api/product_get_single/' + localStorage.getItem("SingleItem"))
         .then(res => {
             let varData = res.data;
+            // image displaying
+            const serverURL = 'http://localhost:5000';
+            const imageURL = `${serverURL}/images/${varData.image}`;
+            sessionStorage.setItem("imageURL", imageURL);
 
             sessionStorage.setItem("ProductName", varData.name);
             sessionStorage.setItem("Image", varData.image);
@@ -64,8 +68,7 @@ function SingleItem() {
                 <Col className="col-1"></Col>
 
                 <Col className="col-5">
-                    {/* Image does not function */}
-                    {/* <img src={'http://localhost:5000/images/' + sessionStorage.getItem("Image")} className="SingleImg"></img> */}
+                    <img src={sessionStorage.getItem("imageURL")} className="SingleImg"></img>
                 </Col>
 
                 <Col className="col-5 Abel text-start" style={{ fontSize: "Largest" }}>

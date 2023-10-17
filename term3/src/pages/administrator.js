@@ -140,9 +140,6 @@ function Administrator() {
         payload.append('data', JSON.stringify(data));
         payload.append('image', image);
 
-        console.log(payload.get('data'));
-        console.log(payload.get('image'));
-
         // If the user left out an item
         if (!productName || !productTagLine || !productDesc || !productPrice) {
             let hMessage = document.getElementById("hMessage");
@@ -172,6 +169,8 @@ function Administrator() {
             document.getElementById("btnAddItem").style.display = 'block';
 
             console.log(payload);
+
+            window.location.reload(true);
         }
     }
 

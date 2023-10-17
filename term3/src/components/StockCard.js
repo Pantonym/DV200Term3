@@ -130,10 +130,12 @@ const StockCard = (props) => {
                         large: variationConeBucketLarge
                     }
                 }
-            }
+            },
         }
 
-        console.log(payload);
+        const objFormData = new FormData();
+        objFormData.append('data', JSON.stringify(payload));
+        objFormData.append('image', image);
 
         if (firstClick === false) {
 
@@ -144,7 +146,19 @@ const StockCard = (props) => {
 
             setFirstClick(false);
             document.getElementById("lblConfirm_" + e).style.display = 'none';
-            Axios.patch(URL, payload);
+            Axios.patch(URL, objFormData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data', // Set the correct content type for FormData
+                },
+            })
+                .then((response) => {
+                    // Handle the response from the server
+                    console.log(response.data);
+                })
+                .catch((error) => {
+                    // Handle any errors
+                    console.error(error);
+                });
             window.location.reload(true);
 
         }

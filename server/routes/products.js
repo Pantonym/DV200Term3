@@ -23,51 +23,6 @@ router.get('/api/product_get_single/:id', async (req, res) => {
     res.json(findProduct);
 });
 
-// Update. You can use .put or .patch
-router.patch('/api/product_update/:id', async (req, res) => {
-    console.log(req.body);
-    let STOCK = +req.body.variations.cone.yoghurt.small + +req.body.variations.cone.yoghurt.medium + +req.body.variations.cone.yoghurt.large + +req.body.variations.cone.waffle.small + +req.body.variations.cone.waffle.medium + +req.body.variations.cone.waffle.large + +req.body.variations.cone.bucket.small + +req.body.variations.cone.bucket.medium + +req.body.variations.cone.bucket.large;
-
-    const findProduct = await ProductSchema.updateOne(
-        { _id: req.params.id },
-        {
-            $set: {
-                name: req.body.name,
-                tagline: req.body.tagline,
-                description: req.body.description,
-                price: req.body.price,
-                stock: STOCK,
-                variations: {
-                    sauce: {
-                        chocolate: req.body.variations.sauce.chocolate,
-                        vanilla: req.body.variations.sauce.vanilla,
-                        caramel: req.body.variations.sauce.caramel
-                    },
-                    cone: {
-                        yoghurt: {
-                            small: req.body.variations.cone.yoghurt.small,
-                            medium: req.body.variations.cone.yoghurt.medium,
-                            large: req.body.variations.cone.yoghurt.large
-                        },
-                        waffle: {
-                            small: req.body.variations.cone.waffle.small,
-                            medium: req.body.variations.cone.waffle.medium,
-                            large: req.body.variations.cone.waffle.large
-                        },
-                        bucket: {
-                            small: req.body.variations.cone.bucket.small,
-                            medium: req.body.variations.cone.bucket.medium,
-                            large: req.body.variations.cone.bucket.large
-                        }
-                    }
-                }
-            }
-        }
-    )
-
-    res.json(findProduct);
-});
-
 //Middleware
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -78,6 +33,54 @@ const storage = multer.diskStorage({
     }
 })
 const upload = multer({ storage: storage })
+
+// Update. You can use .put or .patch
+router.patch('/api/product_update/:id', upload.single('image'), async (req, res) => {
+    const body = JSON.parse(req.body.data);
+    const imageFile = req.file;
+    
+    let STOCK = +body.variations.cone.yoghurt.small + +body.variations.cone.yoghurt.medium + +body.variations.cone.yoghurt.large + +body.variations.cone.waffle.small + +body.variations.cone.waffle.medium + +body.variations.cone.waffle.large + +body.variations.cone.bucket.small + +body.variations.cone.bucket.medium + +body.variations.cone.bucket.large;
+
+    const findProduct = await ProductSchema.updateOne(
+        { _id: req.params.id },
+        {
+            $set: {
+                name: body.name,
+                tagline: body.tagline,
+                description: body.description,
+                price: body.price,
+                stock: STOCK,
+                variations: {
+                    sauce: {
+                        chocolate: body.variations.sauce.chocolate,
+                        vanilla: body.variations.sauce.vanilla,
+                        caramel: body.variations.sauce.caramel
+                    },
+                    cone: {
+                        yoghurt: {
+                            small: body.variations.cone.yoghurt.small,
+                            medium: body.variations.cone.yoghurt.medium,
+                            large: body.variations.cone.yoghurt.large
+                        },
+                        waffle: {
+                            small: body.variations.cone.waffle.small,
+                            medium: body.variations.cone.waffle.medium,
+                            large: body.variations.cone.waffle.large
+                        },
+                        bucket: {
+                            small: body.variations.cone.bucket.small,
+                            medium: body.variations.cone.bucket.medium,
+                            large: body.variations.cone.bucket.large
+                        }
+                    }
+                },
+                image: imageFile.filename
+            }
+        }
+    )
+
+    res.json(findProduct);
+});
 
 // Create
 router.post('/api/product_add/', upload.single('image'), async (req, res) => {
