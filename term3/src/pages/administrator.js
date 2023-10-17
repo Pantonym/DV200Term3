@@ -16,6 +16,9 @@ import OrderCard from "../components/ordercard";
 
 function Administrator() {
 
+    // Image
+    const [image, setImage] = useState();
+
     // Read
     // --Store all products
     const [allProducts, setAllProducts] = useState();
@@ -60,7 +63,7 @@ function Administrator() {
                         yogsmall={item.variations.cone.yoghurt.small} yogmed={item.variations.cone.yoghurt.medium} yoglarge={item.variations.cone.yoghurt.large}
                         wafsmall={item.variations.cone.waffle.small} wafmed={item.variations.cone.waffle.medium} waflarge={item.variations.cone.waffle.large}
                         bucksmall={item.variations.cone.bucket.small} buckmed={item.variations.cone.bucket.medium} bucklarge={item.variations.cone.bucket.large}
-                        landing={item.landing}
+                        image={item.image}
                     />)
 
                 setAllProducts(renderProducts);
@@ -68,110 +71,97 @@ function Administrator() {
             })
             .catch(err => console.log(err))
 
+        // Orders display
+        Axios.get('http://localhost:5000/api/placedorder_get_all/')
+            .then(res => {
+                let productData = res.data;
+
+                let renderProducts = productData.map((item) =>
+                    <OrderCard key={item._id} id={item._id} clientName={item.clientName} clientAddress={item.clientAddress} orderName={item.orderName} />)
+
+                setAllOrders(renderProducts);
+                setReRenderProducts(false);
+            })
+            .catch(err => console.log(err))
+
     }, [reRenderProducts])
 
-    // Orders display
-    Axios.get('http://localhost:5000/api/placedorder_get_all/')
-        .then(res => {
-            let productData = res.data;
+    const getImage = (e) => {
+        let imageFile = e.target.files[0];
+        console.log(imageFile);
+        setImage(imageFile);
 
-            let renderProducts = productData.map((item) =>
-                <OrderCard key={item._id} id={item._id} clientName={item.clientName} clientAddress={item.clientAddress} orderName={item.orderName} />)
-
-            setAllOrders(renderProducts);
-            setReRenderProducts(false);
-        })
-        .catch(err => console.log(err))
+        let reader = new FileReader();
+        reader.readAsDataURL(e.target.files[0]);
+    };
 
     // Functions
     const AddProduct = (e) => {
-
-        // Standardize the number types in case the user did not include one
-        // --Sauces
-        if (variationSauceChocolate === undefined) {
-            setVariationSauceChocolate(0);
-        }
-        if (variationSauceVanilla === undefined) {
-            setVariationSauceVanilla(0);
-        }
-        if (variationSauceCaramel === undefined) {
-            setVariationSauceCaramel(0);
-        }
-        // --Yoghurt
-        if (variationConeYoghurtSmall === undefined) {
-            setVariationConeYoghurtSmall(0);
-        }
-        if (variationConeYoghurtMedium === undefined) {
-            setVariationConeYoghurtMedium(0);
-        }
-        if (variationConeYoghurtLarge === undefined) {
-            setVariationConeYoghurtLarge(0);
-        }
-        // --Waffles
-        if (variationConeWaffleSmall === undefined) {
-            setVariationConeWaffleSmall(0);
-        }
-        if (variationConeWaffleMedium === undefined) {
-            setVariationConeWaffleMedium(0);
-        }
-        if (variationConeWaffleLarge === undefined) {
-            setVariationConeWaffleLarge(0);
-        }
-        // --Buckets
-        if (variationConeBucketSmall === undefined) {
-            setVariationConeBucketSmall(0);
-        }
-        if (variationConeBucketMedium === undefined) {
-            setVariationConeBucketMedium(0);
-        }
-        if (variationConeBucketLarge === undefined) {
-            setVariationConeBucketLarge(0);
-        }
+        // Normalize the variation items
+        const normalizeVariation = (value) => (value === undefined ? 0 : parseInt(value));
 
         // The total stock will be equivalent to the total amount of cones of all cone types.
-        let STOCK = (variationConeYoghurtLarge + variationConeYoghurtMedium + variationConeYoghurtSmall) + (variationConeWaffleLarge + variationConeWaffleMedium + variationConeWaffleSmall) + (variationConeBucketLarge + variationConeBucketMedium + variationConeBucketSmall);
+        let STOCK = (+variationConeYoghurtLarge + +variationConeYoghurtMedium + +variationConeYoghurtSmall) + (+variationConeWaffleLarge + +variationConeWaffleMedium + +variationConeWaffleSmall) + (+variationConeBucketLarge + +variationConeBucketMedium + +variationConeBucketSmall);
 
-        let payload = {
+        // set the data for the first
+        const data = {
             name: productName,
             tagline: productTagLine,
             description: productDesc,
-            price: productPrice,
+            price: parseFloat(productPrice),
             stock: STOCK,
             variations: {
                 sauce: {
-                    chocolate: variationSauceChocolate,
-                    vanilla: variationSauceVanilla,
-                    caramel: variationSauceCaramel
+                    chocolate: normalizeVariation(variationSauceChocolate),
+                    vanilla: normalizeVariation(variationSauceVanilla),
+                    caramel: normalizeVariation(variationSauceCaramel)
                 },
                 cone: {
                     yoghurt: {
-                        small: variationConeYoghurtSmall,
-                        medium: variationConeYoghurtMedium,
-                        large: variationConeYoghurtLarge
+                        small: normalizeVariation(variationConeYoghurtSmall),
+                        medium: normalizeVariation(variationConeYoghurtMedium),
+                        large: normalizeVariation(variationConeYoghurtLarge)
                     },
                     waffle: {
-                        small: variationConeWaffleSmall,
-                        medium: variationConeWaffleMedium,
-                        large: variationConeWaffleLarge
+                        small: normalizeVariation(variationConeWaffleSmall),
+                        medium: normalizeVariation(variationConeWaffleMedium),
+                        large: normalizeVariation(variationConeWaffleLarge)
                     },
                     bucket: {
-                        small: variationConeBucketSmall,
-                        medium: variationConeBucketMedium,
-                        large: variationConeBucketLarge
+                        small: normalizeVariation(variationConeBucketSmall),
+                        medium: normalizeVariation(variationConeBucketMedium),
+                        large: normalizeVariation(variationConeBucketLarge)
                     }
                 }
             }
-        }
+        };
 
-        console.log(payload);
+        const payload = new FormData();
+        payload.append('data', JSON.stringify(data));
+        payload.append('image', image);
+
+        console.log(payload.get('data'));
+        console.log(payload.get('image'));
 
         // If the user left out an item
-        if (productName === undefined || productTagLine === undefined || productDesc === undefined || productPrice === undefined) {
+        if (!productName || !productTagLine || !productDesc || !productPrice) {
             let hMessage = document.getElementById("hMessage");
             hMessage.style.display = 'block';
             hMessage.innerHTML = "Please Fill All Fields For The Base Product";
         } else {
-            Axios.post('http://localhost:5000/api/product_add', payload)
+            Axios.post('http://localhost:5000/api/product_add', payload, {
+                headers: {
+                    'Content-Type': 'multipart/form-data', // Set the correct content type for FormData
+                },
+            })
+                .then((response) => {
+                    // Handle the response from the server
+                    console.log(response.data);
+                })
+                .catch((error) => {
+                    // Handle any errors
+                    console.error(error);
+                });
 
             let hMessage = document.getElementById("hMessage");
             hMessage.style.display = 'block';
@@ -180,6 +170,8 @@ function Administrator() {
 
             document.getElementById("AddItemForm").style.display = 'none';
             document.getElementById("btnAddItem").style.display = 'block';
+
+            console.log(payload);
         }
     }
 
@@ -348,6 +340,10 @@ function Administrator() {
                                 </li>
                             </ul>
 
+                            <br></br>
+                            {/* image upload */}
+                            <label>Upload Image</label>
+                            <input type="file" onChange={getImage}></input>
                             <br></br>
 
                             {/* Confirm/cancel button */}

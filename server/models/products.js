@@ -25,10 +25,6 @@ const ProductSchema = mongoose.Schema({
         type: Number,
         required: true
     },
-    image: {
-        type: String,
-        required: false
-    },
     variations: {
         sauce: {
             chocolate: {
@@ -76,8 +72,11 @@ const ProductSchema = mongoose.Schema({
                 }
             }
         }
+    },
+    image: {
+        type: String,
+        required: false
     }
-
 });
 
 // Each item has a predestined flavour, which is designated by the name.

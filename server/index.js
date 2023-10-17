@@ -1,6 +1,7 @@
 // Basic Uses
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
 const mongoose = require('mongoose');
 const { log } = require('console');
 
@@ -21,6 +22,9 @@ app.use(cors({
     // where the communication comes from the client side
     origin: 'http://localhost:3000' //change if the port changes to 3001, etc. Delete all terminals and restart servers to reset back to port 3000.
 }));
+
+// Allows you to access images in the public folder
+app.use(express.static(path.join(__dirname, 'public')));
 
 // makes the json data work
 app.use(express.json());

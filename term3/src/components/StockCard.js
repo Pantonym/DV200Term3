@@ -14,6 +14,12 @@ import { Card, Button } from "react-bootstrap";
 import { useState } from 'react';
 
 const StockCard = (props) => {
+    // image displaying
+    const serverURL = 'http://localhost:5000';
+    const imageURL = `${serverURL}/images/${props.image}`;
+
+    // image uploading
+    const [image, setImage] = useState();
 
     // Bypass first click failure
     const [firstClick, setFirstClick] = useState(false);
@@ -41,6 +47,15 @@ const StockCard = (props) => {
     const [variationConeBucketSmall, setVariationConeBucketSmall] = useState();
     const [variationConeBucketMedium, setVariationConeBucketMedium] = useState();
     const [variationConeBucketLarge, setVariationConeBucketLarge] = useState();
+
+    const getImage = (e) => {
+        let imageFile = e.target.files[0];
+        console.log(imageFile);
+        setImage(imageFile);
+
+        let reader = new FileReader();
+        reader.readAsDataURL(e.target.files[0]);
+    };
 
     const DeleteFunc = (e) => {
         let URL = 'http://localhost:5000/api/product_delete/' + e;
@@ -146,7 +161,11 @@ const StockCard = (props) => {
                         <h5>{props.description}</h5> <br></br>
                         <h5> Price: R{props.price}</h5> <br></br>
                         <h5> Stock: {props.stock} items</h5> <br></br>
+
+                        <img src={imageURL} alt={props.name} style={{ width: '250px', height: '250px' }}></img>
                     </div>
+
+                    <br></br>
 
                     <div id={"Update_" + props.id} style={{ display: "none" }}>
                         <label>Name:</label>
@@ -223,6 +242,12 @@ const StockCard = (props) => {
 
                         <label>Large:</label>
                         <input id={"buck_large_change" + props.id} defaultValue={props.bucklarge} onChange={(e) => setVariationConeBucketLarge(e.target.value)}></input>
+                        <br></br>
+
+                        <br></br>
+                        {/* image upload */}
+                        <label>Upload Image</label>
+                        <input type="file" onChange={getImage}></input>
                         <br></br>
 
                     </div>

@@ -1,6 +1,10 @@
 // basic requires
 const express = require('express');
 
+// image upload uses
+const multer = require('multer');
+const path = require('path');
+
 // accesses the schema of the model for "car". Remove the ".js" if it still doesn't work, I added it after
 const ProductSchema = require('../models/products.js');
 
@@ -64,38 +68,59 @@ router.patch('/api/product_update/:id', async (req, res) => {
     res.json(findProduct);
 });
 
+//Middleware
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, './public/images')
+    },
+    filename: function (req, file, cb) {
+        cb(null, Date.now() + path.extname(file.originalname))
+    }
+})
+const upload = multer({ storage: storage })
+
 // Create
-router.post('/api/product_add/', async (req, res) => {
+router.post('/api/product_add/', upload.single('image'), async (req, res) => {
+    // The data was not being parsed - it was trying to read a a string like it was an object
+    const body = JSON.parse(req.body.data);
+    const imageFile = req.file;
+
+    console.log('Body:');
+    console.log(body);
+    console.log('Image:');
+    console.log(imageFile);
+
     const newProduct = new ProductSchema({
-        name: req.body.name,
-        tagline: req.body.tagline,
-        description: req.body.description,
-        price: req.body.price,
-        stock: req.body.stock,
+        name: body.name,
+        tagline: body.tagline,
+        description: body.description,
+        price: body.price,
+        stock: body.stock,
         variations: {
             sauce: {
-                chocolate: req.body.variations.sauce.chocolate,
-                vanilla: req.body.variations.sauce.vanilla,
-                caramel: req.body.variations.sauce.caramel
+                chocolate: body.variations.sauce.chocolate,
+                vanilla: body.variations.sauce.vanilla,
+                caramel: body.variations.sauce.caramel
             },
             cone: {
                 yoghurt: {
-                    small: req.body.variations.cone.yoghurt.small,
-                    medium: req.body.variations.cone.yoghurt.medium,
-                    large: req.body.variations.cone.yoghurt.large
+                    small: body.variations.cone.yoghurt.small,
+                    medium: body.variations.cone.yoghurt.medium,
+                    large: body.variations.cone.yoghurt.large
                 },
                 waffle: {
-                    small: req.body.variations.cone.waffle.small,
-                    medium: req.body.variations.cone.waffle.medium,
-                    large: req.body.variations.cone.waffle.large
+                    small: body.variations.cone.waffle.small,
+                    medium: body.variations.cone.waffle.medium,
+                    large: body.variations.cone.waffle.large
                 },
                 bucket: {
-                    small: req.body.variations.cone.bucket.small,
-                    medium: req.body.variations.cone.bucket.medium,
-                    large: req.body.variations.cone.bucket.large
+                    small: body.variations.cone.bucket.small,
+                    medium: body.variations.cone.bucket.medium,
+                    large: body.variations.cone.bucket.large
                 }
             }
-        }
+        },
+        image: imageFile.filename
     });
 
     await newProduct.save()
