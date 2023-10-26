@@ -19,12 +19,12 @@ function SingleItem() {
         let ORDERS = sessionStorage.getItem("ProductName") + ', ' + sessionStorage.getItem("ProductPrice") + ', ' + document.getElementById("SelectFlavours").value + ', ' + document.getElementById("SelectSize").value + ', ' + document.getElementById("SelectType").value + ', ' + RESTRICTIONS + ', ' + document.getElementById("sedQty").value;
 
         let payload = {
-            client: localStorage.getItem("Email"),
+            client: sessionStorage.getItem("Email"),
             orders: ORDERS,
             totalprice: TotalPrice
         }
 
-        if (localStorage.getItem("Email") === null) {
+        if (sessionStorage.getItem("Email") === null) {
             window.location = "/signup";
         } else {
             console.log(payload);

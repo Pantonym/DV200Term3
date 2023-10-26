@@ -66,7 +66,7 @@ function SignUp() {
         }
     }
 
-    // Sign In Function
+    // Sign Up Function
     const SignUpSubmit = async (e) => {
         // --stops the page from refreshing on submit
         e.preventDefault();

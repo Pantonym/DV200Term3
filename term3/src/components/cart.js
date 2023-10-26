@@ -31,7 +31,7 @@ const Cart = (props) => {
     }
 
     // Build the output
-    if (props.client === localStorage.getItem("Email")) {
+    if (props.client === sessionStorage.getItem("Email")) {
         var sString = props.orders;
         var arrOrder = [];
 
