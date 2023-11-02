@@ -15,7 +15,7 @@
 
 <!-- Short Description -->
 <h3 align="center">Wintry West: No-SQL E-Commerce Store</h3>
-<p align="center"> This is an e-commerce website where MongoDB is sued to handle orders, carts, users and products.
+<p align="center"> This is an e-commerce website where MongoDB is used to handle orders, carts, users and products.
     <br>
     <!-- Bug and New Feature Links -->
     <a href="https://github.com/Pantonym/DV200Term3/issues">Report Bug</a>
